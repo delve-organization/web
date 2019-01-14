@@ -1,0 +1,8 @@
+<div class="app-container" [ngStyle]="{'bottom': header.clientHeight + 'px'}">
+  <div class="app-header" #header>
+    <delve-navbar></delve-navbar>
+  </div>
+  <div class="app-body" [ngStyle]="{'padding-top': header.clientHeight + 'px'}">
+    <router-outlet></router-outlet>
+  </div>
+</div>

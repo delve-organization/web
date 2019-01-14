@@ -1,0 +1,40 @@
+.band {
+  width: 90%;
+  max-width: 1240px;
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  grid-gap: 20px;
+  padding: 16px 0;
+}
+
+@media only screen and (min-width: 500px) {
+  .band {
+    grid-template-columns: 1fr 1fr;
+    .big-card {
+      grid-column: 1/ span 2;
+      h1 {
+        font-size: 30px;
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 850px) {
+  .band {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+.tree-board-search-field-container {
+  width: fit-content;
+  margin: auto;
+  padding-top: 10px;
+}
+
+.tree-board-search-field {
+  width: 200px;
+}

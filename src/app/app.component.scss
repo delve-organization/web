@@ -1,0 +1,31 @@
+.app-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  .app-header {
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  .app-body {
+    width: 100%;
+    min-width: fit-content;
+    height: 100%;
+    min-height: fit-content;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    background-color: #f5f5f5;
+  }
+}
+
+.tree-selector {
+  margin: 5px;
+}

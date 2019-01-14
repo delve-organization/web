@@ -1,0 +1,23 @@
+@for $i from 0 through 3 {
+  $size: 12 + $i * 12;
+
+  .mat-icon-button.md-#{$size} {
+    height: $size + px;
+    width: $size + px;
+    font-size: $size + px;
+    .material-icons {
+      height: 24px;
+      width: $size + px;
+      font-size: $size + px;
+    }
+  }
+}
+
+.mat-drawer-container {
+  background: #939393;
+}
+
+.mat-icon-button .mat-button-wrapper {
+  display: flex;
+  justify-content: center;
+}

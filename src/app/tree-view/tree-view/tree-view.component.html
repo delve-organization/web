@@ -1,0 +1,9 @@
+<div *ngIf="treeLoaded && nodeLoaded && relationsLoaded; else loading" class="tree-view-content">
+  <div class="tree-view-title">
+    <h1 class="mat-h1">{{tree.title}}</h1>
+  </div>
+  <delve-tree class="tree-view" [nodeData]="node" [relationsData]="relations"></delve-tree>
+</div>
+<ng-template #loading>
+  <delve-loading></delve-loading>
+</ng-template>

@@ -1,0 +1,20 @@
+<mat-toolbar color="primary" class="mat-elevation-z5">
+  <mat-toolbar-row>
+    <button mat-button routerLink="/tree-board">
+      <mat-icon svgIcon="delve"></mat-icon>
+      Delve
+    </button>
+    <span class="navbar-spacer"></span>
+
+    <button mat-icon-button matTooltip="Admin" (click)="navigateToAdmin()" *ngIf="isAdmin">
+      <mat-icon>security</mat-icon>
+    </button>
+    <button mat-icon-button matTooltip="Sign out" (click)="logout()" *ngIf="isLoggedIn">
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
+    <button mat-button (click)="openSourceOnNewTab()">
+      <mat-icon svgIcon="bitbucket"></mat-icon>
+      Bitbucket
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>

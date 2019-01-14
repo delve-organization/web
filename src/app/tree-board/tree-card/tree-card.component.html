@@ -1,0 +1,12 @@
+<div class="card">
+  <div  (click)="navigateToTree()" class="thumb" [style.backgroundImage]="'url(' + treeBoard.imageUrl+ ')'" [style.backgroundColor]="treeBoard.color"></div>
+  <article>
+    <h1 class="mat-h1">{{treeBoard.title}}</h1>
+    <p class="mat-body">{{treeBoard.description}}</p>
+  </article>
+  <div>
+    <button mat-icon-button class="md-36 tree-card-button" (click)="delete()">
+      <mat-icon color="warn">{{'delete_forever'}}</mat-icon>
+    </button>
+  </div>
+</div>
