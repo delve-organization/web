@@ -1,4 +1,5 @@
 # Delve Web
+[![Build Status](http://rsptn.ddns.net:5551/job/delve-web/badge/icon)](http://rsptn.ddns.net:5551/job/delve-web/badge/icon)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.5.
 
