@@ -3,6 +3,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.5.
 
+## Prerequisites
+
+Please make sure that you have [Node.js](https://nodejs.org/en/) installed on your machine. Also install yarn globally if you haven't already. You can do that by running this command: `npm install -g yarn`.
+
 ## Development server
 
 To set up the environment please run `yarn install`, which will download the necessary packages.
