@@ -15,9 +15,8 @@
     <packaging>jar</packaging>
 
     <properties>
-        <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
-        <node.version>v9.0.0</node.version>
-        <yarn.version>v1.3.2</yarn.version>
+        <exec-maven-plugin.version>1.5.0</exec-maven-plugin.version>
+        <yarn.executable>yarn</yarn.executable>
     </properties>
 
     <build>
@@ -28,53 +27,68 @@
         </resources>
         <plugins>
             <plugin>
-                <groupId>com.github.eirslett</groupId>
-                <artifactId>frontend-maven-plugin</artifactId>
-                <version>${frontend-maven-plugin.version}</version>
-                <configuration>
-                    <nodeVersion>${node.version}</nodeVersion>
-                    <yarnVersion>${yarn.version}</yarnVersion>
-                </configuration>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>${exec-maven-plugin.version}</version>
                 <executions>
                     <execution>
-                        <id>install node and yarn</id>
+                        <id>run-yarn-install</id>
+                        <phase>validate</phase>
                         <goals>
-                            <goal>install-node-and-yarn</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                    </execution>
-                    <execution>
-                        <id>yarn install</id>
-                        <goals>
-                            <goal>yarn</goal>
+                            <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <arguments>install</arguments>
+                            <executable>${yarn.executable}</executable>
+                            <arguments>
+                                <argument>install</argument>
+                            </arguments>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>yarn lint</id>
+                        <id>run-yarn-lint</id>
+                        <phase>validate</phase>
                         <goals>
-                            <goal>yarn</goal>
+                            <goal>exec</goal>
                         </goals>
                         <configuration>
-                            <arguments>lint</arguments>
+                            <executable>${yarn.executable}</executable>
+                            <arguments>
+                                <argument>lint</argument>
+                            </arguments>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>yarn build</id>
-                        <goals>
-                            <goal>yarn</goal>
-                        </goals>
+                        <id>run-yarn-build</id>
                         <phase>generate-resources</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
                         <configuration>
-                            <arguments>build</arguments>
+                            <executable>${yarn.executable}</executable>
+                            <arguments>
+                                <argument>build</argument>
+                            </arguments>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>platform-windows</id>
+            <activation>
+                <os>
+                    <family>windows</family>
+                </os>
+            </activation>
+            <properties>
+                <!-- Override the executable names for Windows -->
+                <yarn.executable>yarn.cmd</yarn.executable>
+            </properties>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
