@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
   }
 
   public openSourceOnNewTab(): void {
-    window.open('https://bitbucket.org/pipiczistvan/delve', '_blank');
+    window.open('https://github.com/delve-organization', '_blank');
   }
 
   public logout(): void {
