@@ -10,25 +10,30 @@ import {FormsModule} from '@angular/forms';
 import {TreeBoardService} from './services/tree-board.service';
 import {TreeBoardNamePipe} from './tree-board/pipes/tree-board.name.pipe';
 import {TreeBoardNotDeletedPipe} from './tree-board/pipes/tree-board.not-deleted.pipe';
+import {TreeCardDeleteDialogComponent} from './tree-card/tree-card-delete-dialog/tree-card-delete-dialog.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    MaterialModule,
-    DelveComponentsModule,
-    TreeBoardRoutingModule,
-    FormsModule
-  ],
-  declarations: [
-    TreeBoardComponent,
-    TreeCardComponent,
-    TreeBoardNamePipe,
-    TreeBoardNotDeletedPipe
-  ],
-  providers: [
-    TreeService,
-    TreeBoardService
-  ]
+    imports: [
+        CommonModule,
+        MaterialModule,
+        DelveComponentsModule,
+        TreeBoardRoutingModule,
+        FormsModule
+    ],
+    declarations: [
+        TreeBoardComponent,
+        TreeCardComponent,
+        TreeBoardNamePipe,
+        TreeBoardNotDeletedPipe,
+        TreeCardDeleteDialogComponent
+    ],
+    entryComponents: [
+        TreeCardDeleteDialogComponent
+    ],
+    providers: [
+        TreeService,
+        TreeBoardService
+    ]
 })
 export class TreeBoardModule {
 }
