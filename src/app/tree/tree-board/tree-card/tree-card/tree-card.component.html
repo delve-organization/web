@@ -1,0 +1,12 @@
+<div class="card">
+    <div (click)="emitThumbClick()" class="thumb"
+         [style.backgroundImage]="'url(' + imageUrl+ ')'"
+         [style.backgroundColor]="color"></div>
+    <article>
+        <h1 class="mat-h1">{{title}}</h1>
+        <p class="mat-body">{{description}}</p>
+    </article>
+    <div>
+        <ng-container [ngTemplateOutlet]="buttonRowTemplateOutlet"></ng-container>
+    </div>
+</div>

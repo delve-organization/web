@@ -8,12 +8,12 @@ const routes: Routes = [
   {path: '', pathMatch: 'full', redirectTo: 'tree-board'},
   {
     path: 'tree-board',
-    loadChildren: 'app/tree-board/tree-board.module#TreeBoardModule',
+    loadChildren: 'app/tree/tree-board/tree-board.module#TreeBoardModule',
     canActivate: [AuthGuardService]
   },
   {
     path: 'tree-view/:id',
-    loadChildren: 'app/tree-view/tree-view.module#TreeViewModule',
+    loadChildren: 'app/tree/tree-view/tree-view.module#TreeViewModule',
     canActivate: [AuthGuardService]
   },
   {path: 'user', component: AdminComponent, canActivate: [AuthGuardService, AdminGuardService]},

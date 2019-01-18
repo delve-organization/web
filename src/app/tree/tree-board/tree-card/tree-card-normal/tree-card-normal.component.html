@@ -1,0 +1,13 @@
+<delve-tree-card
+        [title]="treeBoard.title"
+        [description]="treeBoard.description"
+        [color]="treeBoard.color"
+        (thumbClick)="navigateToTree()"
+        [buttonRowTemplateOutlet]="buttonRowTemplate"
+        [imageUrl]="treeBoard.imageUrl">
+    <ng-template #buttonRowTemplate>
+        <button mat-icon-button class="md-36 tree-card-button" (click)="openDeleteDialog()">
+            <mat-icon>{{'delete_forever'}}</mat-icon>
+        </button>
+    </ng-template>
+</delve-tree-card>

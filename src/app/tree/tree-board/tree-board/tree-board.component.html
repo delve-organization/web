@@ -1,0 +1,20 @@
+<div class="tree-board-search-field-container">
+  <mat-form-field class="tree-board-search-field">
+    <input matInput type="text" placeholder="Type here to filter results" [(ngModel)]="treeCardFilter">
+    <button mat-button *ngIf="treeCardFilter" matSuffix mat-icon-button aria-label="Clear" (click)="treeCardFilter=''">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<div *ngIf="treeBoardsLoaded && treesLoaded; else loading" class="band">
+  <div *ngFor="let treeBoard of treeBoards | notDeleted | name: treeCardFilter; let index = index">
+    <delve-tree-card-normal [treeBoard]="treeBoard"></delve-tree-card-normal>
+  </div>
+  <div *ngIf="!treeCardFilter || 'Create new card'.toLowerCase().indexOf(treeCardFilter.toLowerCase()) !== -1">
+    <delve-tree-card-create></delve-tree-card-create>
+  </div>
+</div>
+<ng-template #loading>
+  <delve-loading></delve-loading>
+</ng-template>
