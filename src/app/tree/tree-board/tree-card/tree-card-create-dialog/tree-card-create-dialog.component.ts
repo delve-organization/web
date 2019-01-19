@@ -22,7 +22,7 @@ export class TreeCardCreateDialogComponent {
             this.data.description,
             1,
             'fat_cat.png',
-            'black',
+            this.data.color,
             this.data.public ? Accessibility.PUBLIC : Accessibility.PRIVATE
         ).subscribe((treeBoard) => {
             this.dialogRef.close(treeBoard);
