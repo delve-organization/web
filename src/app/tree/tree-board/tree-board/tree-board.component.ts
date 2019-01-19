@@ -25,7 +25,7 @@ export class TreeBoardComponent implements OnInit {
       this.treeBoards = response;
       this.treeBoardsLoaded = true;
     });
-    this.treeService.getAllTrees().subscribe((response) => {
+    this.treeService.getAllAvailableTrees().subscribe((response) => {
       this.trees = response;
       this.treesLoaded = true;
     });

@@ -11,6 +11,7 @@ import {
     MatMenuModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,
+    MatSelectModule,
     MatSlideToggleModule,
     MatSnackBarModule,
     MatSortModule,
@@ -25,14 +26,14 @@ import {
         MatSnackBarModule, MatButtonModule, MatCheckboxModule, MatToolbarModule,
         MatIconModule, MatMenuModule, MatCardModule, MatProgressSpinnerModule,
         MatGridListModule, MatInputModule, MatTooltipModule, MatDialogModule,
-        MatSlideToggleModule
+        MatSlideToggleModule, MatSelectModule
     ],
     exports: [
         MatButtonToggleModule, MatSortModule, MatPaginatorModule, MatTableModule,
         MatSnackBarModule, MatButtonModule, MatCheckboxModule, MatToolbarModule,
         MatIconModule, MatMenuModule, MatCardModule, MatProgressSpinnerModule,
         MatGridListModule, MatInputModule, MatTooltipModule, MatDialogModule,
-        MatSlideToggleModule
+        MatSlideToggleModule, MatSelectModule
     ]
 })
 export class MaterialModule {

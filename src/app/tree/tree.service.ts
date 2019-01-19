@@ -9,8 +9,8 @@ export class TreeService {
   constructor(private http: HttpClient) {
   }
 
-  getAllTrees(): Observable<Array<TreeDto>> {
-    return this.http.get<Array<TreeDto>>('/api/tree/all');
+    getAllAvailableTrees(): Observable<Array<TreeDto>> {
+    return this.http.get<Array<TreeDto>>('/api/tree/all-available');
   }
 
   getTreeById(id: number): Observable<TreeDto> {

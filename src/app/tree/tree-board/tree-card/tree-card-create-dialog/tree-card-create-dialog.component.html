@@ -14,6 +14,14 @@
       <input matInput placeholder="Description" [(ngModel)]="data.description" name="description">
     </mat-form-field>
 
+    <mat-form-field class="form-full-width">
+      <mat-select placeholder="Tree" [(ngModel)]="data.treeId" name="tree">
+        <mat-option *ngFor="let tree of data.trees" [value]="tree.id">
+          {{tree.title}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <div class="form-full-width">
       <mat-icon class="color-picker-icon" matTooltip="Color" [(colorPicker)]="data.color" [style.color]="data.color">palette</mat-icon>
     </div>

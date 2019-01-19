@@ -12,7 +12,7 @@
     <delve-tree-card-normal [treeBoards]="treeBoards" [treeBoardIndex]="index"></delve-tree-card-normal>
   </div>
   <div *ngIf="!treeCardFilter || 'Create new card'.toLowerCase().indexOf(treeCardFilter.toLowerCase()) !== -1">
-    <delve-tree-card-create [treeBoards]="treeBoards"></delve-tree-card-create>
+    <delve-tree-card-create [treeBoards]="treeBoards" [trees]="trees"></delve-tree-card-create>
   </div>
 </div>
 <ng-template #loading>

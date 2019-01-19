@@ -1,3 +1,5 @@
+import {TreeDto} from '../tree.types';
+
 export interface TreeBoardDto {
     id: number;
     treeId: number;
@@ -14,6 +16,7 @@ export interface DeleteTreeCardDialogData {
 }
 
 export interface CreateTreeCardDialogData {
+    trees: TreeDto[];
     title: string;
     description: string;
     public: boolean;

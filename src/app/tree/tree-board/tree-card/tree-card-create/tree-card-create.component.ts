@@ -2,6 +2,7 @@ import {Component, Input} from '@angular/core';
 import {MatDialog} from '@angular/material';
 import {TreeCardCreateDialogComponent} from '../tree-card-create-dialog/tree-card-create-dialog.component';
 import {TreeBoardDto} from '../../tree-board.types';
+import {TreeDto} from '../../../tree.types';
 
 @Component({
     selector: 'delve-tree-card-create',
@@ -11,6 +12,7 @@ import {TreeBoardDto} from '../../tree-board.types';
 export class TreeCardCreateComponent {
 
     @Input() public treeBoards: TreeBoardDto[];
+    @Input() public trees: TreeDto[];
 
     constructor(private dialog: MatDialog) {
     }
@@ -19,7 +21,8 @@ export class TreeCardCreateComponent {
         const dialogRef = this.dialog.open(TreeCardCreateDialogComponent, {
             width: '350px',
             data: {
-                public: true
+                public: true,
+                trees: this.trees
             }
         });
 
