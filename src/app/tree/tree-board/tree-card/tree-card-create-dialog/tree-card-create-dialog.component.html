@@ -1,0 +1,22 @@
+<h1 mat-dialog-title class="dialog-title">Create new card</h1>
+
+<mat-slide-toggle class="accessibility-toggle" [(ngModel)]="data.public" name="accessibility">
+  <mat-icon matTooltip="{{data.public ? 'Public' : 'Private'}}">{{data.public ? 'people' : 'people_outline'}}</mat-icon>
+</mat-slide-toggle>
+
+<div mat-dialog-content>
+  <form>
+    <mat-form-field class="form-full-width">
+      <input matInput placeholder="Title" [(ngModel)]="data.title" name="title">
+    </mat-form-field>
+
+    <mat-form-field class="form-full-width">
+      <input matInput placeholder="Description" [(ngModel)]="data.description" name="description">
+    </mat-form-field>
+
+  </form>
+</div>
+<div mat-dialog-actions class="dialog-button-row">
+  <button mat-flat-button color="basic" mat-dialog-close="false">Cancel</button>
+  <button mat-flat-button color="primary" (click)="onSaveClick()">Save</button>
+</div>

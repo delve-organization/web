@@ -6,10 +6,18 @@ export interface TreeBoardDto {
     editable: boolean;
     imageUrl: string;
     color: string;
-    deleted: boolean;
 }
 
 export interface DeleteTreeCardDialogData {
     id: number;
     title: string;
+}
+
+export interface CreateTreeCardDialogData {
+    title: string;
+    description: string;
+    public: boolean;
+    image: string;
+    color: string;
+    treeId: number;
 }

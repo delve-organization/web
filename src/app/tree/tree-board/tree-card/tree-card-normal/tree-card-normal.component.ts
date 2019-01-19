@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {TreeBoardDto} from '../../tree-board.types';
 import {Router} from '@angular/router';
 import {TreeCardDeleteDialogComponent} from '../tree-card-delete-dialog/tree-card-delete-dialog.component';
@@ -9,11 +9,18 @@ import {MatDialog} from '@angular/material';
     templateUrl: './tree-card-normal.component.html',
     styleUrls: ['./tree-card-normal.component.scss']
 })
-export class TreeCardNormalComponent {
+export class TreeCardNormalComponent implements OnInit {
 
-    @Input() public treeBoard: TreeBoardDto;
+    @Input() public treeBoards: TreeBoardDto[];
+    @Input() public treeBoardIndex: number;
+
+    public treeBoard: TreeBoardDto;
 
     constructor(private router: Router, private dialog: MatDialog) {
+    }
+
+    ngOnInit(): void {
+        this.treeBoard = this.treeBoards[this.treeBoardIndex];
     }
 
     public navigateToTree(): void {
@@ -29,8 +36,10 @@ export class TreeCardNormalComponent {
             }
         });
 
-        dialogRef.afterClosed().subscribe(result => {
-            this.treeBoard.deleted = result === true;
+        dialogRef.afterClosed().subscribe(deleted => {
+            if (deleted === true) {
+                this.treeBoards.splice(this.treeBoardIndex, 1);
+            }
         });
     }
 }

@@ -8,11 +8,11 @@
 </div>
 
 <div *ngIf="treeBoardsLoaded && treesLoaded; else loading" class="band">
-  <div *ngFor="let treeBoard of treeBoards | notDeleted | name: treeCardFilter; let index = index">
-    <delve-tree-card-normal [treeBoard]="treeBoard"></delve-tree-card-normal>
+  <div *ngFor="let treeBoard of treeBoards | name: treeCardFilter; let index = index">
+    <delve-tree-card-normal [treeBoards]="treeBoards" [treeBoardIndex]="index"></delve-tree-card-normal>
   </div>
   <div *ngIf="!treeCardFilter || 'Create new card'.toLowerCase().indexOf(treeCardFilter.toLowerCase()) !== -1">
-    <delve-tree-card-create></delve-tree-card-create>
+    <delve-tree-card-create [treeBoards]="treeBoards"></delve-tree-card-create>
   </div>
 </div>
 <ng-template #loading>
