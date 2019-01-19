@@ -7,6 +7,6 @@ export interface TreeDto {
 }
 
 export enum Accessibility {
-    PUBLIC,
-    PRIVATE
+    PUBLIC = 'PUBLIC',
+    PRIVATE = 'PRIVATE'
 }

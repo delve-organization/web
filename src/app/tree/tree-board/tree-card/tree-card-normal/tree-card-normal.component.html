@@ -6,7 +6,7 @@
         [buttonRowTemplateOutlet]="buttonRowTemplate"
         [imageUrl]="treeBoard.imageUrl">
     <ng-template #buttonRowTemplate>
-        <button mat-icon-button class="md-36 tree-card-button" (click)="openDeleteDialog()">
+        <button mat-icon-button class="md-36 tree-card-button" (click)="openDeleteDialog()" *ngIf="treeBoard.editable">
             <mat-icon>{{'delete_forever'}}</mat-icon>
         </button>
     </ng-template>

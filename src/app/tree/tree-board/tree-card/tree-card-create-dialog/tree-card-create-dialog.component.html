@@ -1,34 +1,55 @@
 <h1 mat-dialog-title class="dialog-title">Create new card</h1>
 
-<mat-slide-toggle class="accessibility-toggle" [(ngModel)]="data.public" name="accessibility">
-  <mat-icon matTooltip="{{data.public ? 'Public' : 'Private'}}">{{data.public ? 'people' : 'people_outline'}}</mat-icon>
-</mat-slide-toggle>
+<div class="header-right">
+    <mat-slide-toggle class="accessibility-toggle" [(ngModel)]="data.public" name="accessibility">
+        <mat-icon matTooltip="{{data.public ? 'Public' : 'Private'}}">{{data.public ? 'lock_open' : 'lock'}}
+        </mat-icon>
+    </mat-slide-toggle>
+
+    <mat-icon class="color-picker-icon" matTooltip="Color" [(colorPicker)]="data.color"
+              [style.color]="data.color">palette
+    </mat-icon>
+</div>
 
 <div mat-dialog-content>
-  <form>
-    <mat-form-field class="form-full-width">
-      <input matInput placeholder="Title" [(ngModel)]="data.title" name="title">
-    </mat-form-field>
+    <form>
+        <mat-form-field class="form-full-width">
+            <input matInput placeholder="Title" [(ngModel)]="data.title" name="title">
+        </mat-form-field>
 
-    <mat-form-field class="form-full-width">
-      <input matInput placeholder="Description" [(ngModel)]="data.description" name="description">
-    </mat-form-field>
+        <mat-form-field class="form-full-width">
+            <input matInput placeholder="Description" [(ngModel)]="data.description" name="description">
+        </mat-form-field>
 
-    <mat-form-field class="form-full-width">
-      <mat-select placeholder="Tree" [(ngModel)]="data.treeId" name="tree">
-        <mat-option *ngFor="let tree of data.trees" [value]="tree.id">
-          {{tree.title}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
+        <mat-form-field class="form-full-width">
+            <mat-select placeholder="Tree" [(ngModel)]="data.treeId" name="tree">
+                <mat-option *ngFor="let tree of data.trees" [value]="tree.id">
+                    {{tree.title}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
 
-    <div class="form-full-width">
-      <mat-icon class="color-picker-icon" matTooltip="Color" [(colorPicker)]="data.color" [style.color]="data.color">palette</mat-icon>
-    </div>
+        <div>
+            <input type="file" accept=".png" (change)="onFileChanged($event)" hidden #imageInput>
+            <mat-form-field>
+                <input matInput disabled placeholder="Image" [(ngModel)]="selectedImageName" name="image">
+            </mat-form-field>
+            <div class="image-upload-button-group">
+                <button mat-mini-fab (click)="imageInput.click()" color="primary" matTooltip="Choose">
+                    <mat-icon>insert_photo</mat-icon>
+                </button>
+                <button mat-mini-fab (click)="onUploadClick()" color="primary" matTooltip="Upload"
+                [disabled]="!selectedImage">
+                    <mat-icon>publish</mat-icon>
+                </button>
+            </div>
+            <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
+        </div>
 
-  </form>
+    </form>
 </div>
 <div mat-dialog-actions class="dialog-button-row">
-  <button mat-flat-button color="basic" mat-dialog-close="false">Cancel</button>
-  <button mat-flat-button color="primary" (click)="onSaveClick()">Save</button>
+    <button mat-flat-button color="basic" mat-dialog-close="false">Cancel</button>
+    <button mat-flat-button color="primary" (click)="onSaveClick()"
+    [disabled]="!data.title || !data.description || !data.treeId || !data.image">Save</button>
 </div>
