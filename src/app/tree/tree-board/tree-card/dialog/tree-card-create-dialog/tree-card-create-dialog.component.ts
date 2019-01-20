@@ -27,6 +27,7 @@ export class TreeCardCreateDialogComponent {
             this.data.public ? Accessibility.PUBLIC : Accessibility.PRIVATE
         ).subscribe((treeBoard) => {
             this.data.treeBoards.push(treeBoard);
+            this.dialogRef.close(true);
         });
     }
 }
