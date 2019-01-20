@@ -21,6 +21,9 @@ export class TreeCardCreateOrEditComponent implements OnInit {
     public selectedImageName: string;
     public uploadProgress: number;
 
+    public colorChanged: boolean;
+    public imageChanged: boolean;
+
     constructor(private imageService: ImageService) {
     }
 
@@ -48,6 +51,8 @@ export class TreeCardCreateOrEditComponent implements OnInit {
 
                 this.data.treeBoard.image = imageUpload.imageName;
                 this.data.treeBoard.imageUrl = imageUpload.imageUrl;
+                this.imageChanged = true;
+                this.selectedImage = undefined;
             }
         });
     }
@@ -58,5 +63,9 @@ export class TreeCardCreateOrEditComponent implements OnInit {
 
     public onDeleteClick(): void {
         this.deleteClick.emit();
+    }
+
+    public onColorPickerChange(): void {
+        this.colorChanged = true;
     }
 }

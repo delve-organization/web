@@ -1,18 +1,18 @@
 <h1 mat-dialog-title class="dialog-title">{{title}}</h1>
 
-<div class="header-right">
+<form class="header-right" #headerForm="ngForm">
   <mat-slide-toggle class="accessibility-toggle" [(ngModel)]="data.public" name="accessibility">
     <mat-icon matTooltip="{{data.public ? 'Public' : 'Private'}}">{{data.public ? 'lock_open' : 'lock'}}
     </mat-icon>
   </mat-slide-toggle>
 
   <mat-icon class="color-picker-icon" matTooltip="Color" [(colorPicker)]="data.treeBoard.color"
-            [style.color]="data.treeBoard.color">palette
+            (colorPickerChange)="onColorPickerChange()" [style.color]="data.treeBoard.color">palette
   </mat-icon>
-</div>
+</form>
 
 <div mat-dialog-content>
-  <form>
+  <form #cardFrom="ngForm">
     <mat-form-field class="form-full-width">
       <input matInput placeholder="Title" [(ngModel)]="data.treeBoard.title" name="title">
     </mat-form-field>
@@ -30,7 +30,7 @@
     </mat-form-field>
 
     <div>
-      <div class="image-upload">
+      <form class="image-upload" #imageUploadForm="ngForm">
         <input type="file" accept=".png" (change)="onFileChanged($event)" hidden #imageInput>
         <mat-form-field class="image-upload-input">
           <input matInput disabled placeholder="Image" [(ngModel)]="selectedImageName" name="image">
@@ -44,7 +44,7 @@
             <mat-icon>publish</mat-icon>
           </button>
         </div>
-      </div>
+      </form>
       <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
     </div>
 
@@ -53,6 +53,10 @@
 <div mat-dialog-actions class="dialog-button-row">
   <button mat-flat-button color="basic" mat-dialog-close="false">Cancel</button>
   <button mat-flat-button color="primary" (click)="onSaveClick()"
-          [disabled]="!data.treeBoard.title || !data.treeBoard.description || !data.treeBoard.treeId || !data.treeBoard.image">Save</button>
+          [disabled]="(cardFrom.form.pristine && headerForm.form.pristine
+          && !colorChanged && !imageChanged)
+          || !data.treeBoard.title || !data.treeBoard.description
+          || !data.treeBoard.treeId || !data.treeBoard.image"
+  >Save</button>
   <button mat-flat-button color="warn" (click)="onDeleteClick()" *ngIf="deleteVisible">Delete</button>
 </div>
