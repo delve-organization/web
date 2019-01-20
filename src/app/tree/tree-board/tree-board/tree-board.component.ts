@@ -34,17 +34,13 @@ export class TreeBoardComponent implements OnInit {
     }
 
     public openCreateDialog(): void {
-        const dialogRef = this.dialog.open(TreeCardCreateDialogComponent, {
+        this.dialog.open(TreeCardCreateDialogComponent, {
             width: '350px',
             data: {
-                public: true,
-                trees: this.trees
-            }
-        });
-
-        dialogRef.afterClosed().subscribe(result => {
-            if (result !== undefined && result.id !== undefined) {
-                this.treeBoards.push(result);
+                trees: this.trees,
+                treeBoards: this.treeBoards,
+                treeBoard: {},
+                public: true
             }
         });
     }

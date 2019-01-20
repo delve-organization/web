@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TreeCardDialogData} from '../../tree-card.types';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {ImageService} from '../../../../../common/services/image.service';
+import {ImageUploadDto} from '../../../../../common/types/image.types';
 
 @Component({
     selector: 'delve-tree-card-create-or-edit',
@@ -24,8 +25,8 @@ export class TreeCardCreateOrEditComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (this.data.image) {
-            this.selectedImageName = this.data.image;
+        if (this.data.treeBoard.image) {
+            this.selectedImageName = this.data.treeBoard.image;
         }
     }
 
@@ -33,7 +34,7 @@ export class TreeCardCreateOrEditComponent implements OnInit {
         this.selectedImage = event.target.files[0];
         this.selectedImageName = this.selectedImage.name;
         this.uploadProgress = 0;
-        this.data.image = undefined;
+        this.data.treeBoard.image = undefined;
     }
 
     public onUploadClick(): void {
@@ -43,7 +44,10 @@ export class TreeCardCreateOrEditComponent implements OnInit {
             if (event.type === HttpEventType.UploadProgress) {
                 this.uploadProgress = Math.round(100 * event.loaded / event.total);
             } else if (event instanceof HttpResponse) {
-                this.data.image = event.body.toString();
+                const imageUpload: ImageUploadDto = event.body as ImageUploadDto;
+
+                this.data.treeBoard.image = imageUpload.imageName;
+                this.data.treeBoard.imageUrl = imageUpload.imageUrl;
             }
         });
     }

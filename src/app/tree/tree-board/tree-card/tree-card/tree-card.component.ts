@@ -18,11 +18,14 @@ export class TreeCardComponent implements OnInit {
 
     public treeBoard: TreeBoardDto;
 
+    private pristineTreeBoard: TreeBoardDto;
+
     constructor(private router: Router, private dialog: MatDialog) {
     }
 
     ngOnInit(): void {
         this.treeBoard = this.treeBoards[this.treeBoardIndex];
+        this.pristineTreeBoard = Object.assign({}, this.treeBoard);
     }
 
     public navigateToTree(): void {
@@ -33,23 +36,19 @@ export class TreeCardComponent implements OnInit {
         const dialogRef = this.dialog.open(TreeCardEditDialogComponent, {
             width: '350px',
             data: {
-                title: this.treeBoard.title,
-                description: this.treeBoard.description,
-                public: this.treeBoard.accessibility === Accessibility.PUBLIC,
-                image: this.treeBoard.image,
-                color: this.treeBoard.color,
                 trees: this.trees,
-                treeId: this.treeBoard.treeId,
-
                 treeBoards: this.treeBoards,
+                treeBoard: this.treeBoard,
                 treeBoardIndex: this.treeBoardIndex,
-                treeBoardId: this.treeBoard.id
+                public: this.treeBoard.accessibility === Accessibility.PUBLIC
             }
         });
 
-        dialogRef.afterClosed().subscribe(result => {
-            if (result !== undefined && result.id !== undefined) {
-                this.treeBoards[this.treeBoardIndex] = result;
+        dialogRef.afterClosed().subscribe(saved => {
+            if (saved === true) {
+                this.pristineTreeBoard = Object.assign({}, this.treeBoard);
+            } else {
+                this.treeBoard = Object.assign({}, this.pristineTreeBoard);
             }
         });
     }

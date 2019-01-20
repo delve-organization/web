@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {CreateTreeCardDialogData} from '../../tree-card.types';
+import {TreeCardDialogData} from '../../tree-card.types';
 import {TreeBoardService} from '../../../tree-board/tree-board.service';
 import {Accessibility} from '../../../../tree.types';
 
@@ -13,20 +13,20 @@ export class TreeCardCreateDialogComponent {
 
 
     constructor(public dialogRef: MatDialogRef<TreeCardCreateDialogComponent>,
-                @Inject(MAT_DIALOG_DATA) public data: CreateTreeCardDialogData,
+                @Inject(MAT_DIALOG_DATA) public data: TreeCardDialogData,
                 private treeBoardService: TreeBoardService) {
     }
 
     public saveCard(): void {
         this.treeBoardService.create(
-            this.data.title,
-            this.data.description,
-            this.data.treeId,
-            this.data.image,
-            this.data.color,
+            this.data.treeBoard.title,
+            this.data.treeBoard.description,
+            this.data.treeBoard.treeId,
+            this.data.treeBoard.image,
+            this.data.treeBoard.color,
             this.data.public ? Accessibility.PUBLIC : Accessibility.PRIVATE
         ).subscribe((treeBoard) => {
-            this.dialogRef.close(treeBoard);
+            this.data.treeBoards.push(treeBoard);
         });
     }
 }

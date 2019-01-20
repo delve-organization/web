@@ -13,8 +13,7 @@ export class ImageService {
         formData.append('file', file);
 
         const request = new HttpRequest('POST', '/api/images/upload', formData, {
-            reportProgress: true,
-            responseType: 'text'
+            reportProgress: true
         });
 
         return this.http.request<HttpEvent<{}>>(request);
