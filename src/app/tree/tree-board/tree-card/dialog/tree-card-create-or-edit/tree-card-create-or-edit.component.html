@@ -30,18 +30,20 @@
     </mat-form-field>
 
     <div>
-      <input type="file" accept=".png" (change)="onFileChanged($event)" hidden #imageInput>
-      <mat-form-field>
-        <input matInput disabled placeholder="Image" [(ngModel)]="selectedImageName" name="image">
-      </mat-form-field>
-      <div class="image-upload-button-group">
-        <button mat-mini-fab (click)="imageInput.click()" color="primary" matTooltip="Choose">
-          <mat-icon>insert_photo</mat-icon>
-        </button>
-        <button mat-mini-fab (click)="onUploadClick()" color="primary" matTooltip="Upload"
-                [disabled]="!selectedImage">
-          <mat-icon>publish</mat-icon>
-        </button>
+      <div class="image-upload">
+        <input type="file" accept=".png" (change)="onFileChanged($event)" hidden #imageInput>
+        <mat-form-field class="image-upload-input">
+          <input matInput disabled placeholder="Image" [(ngModel)]="selectedImageName" name="image">
+        </mat-form-field>
+        <div class="image-upload-button-group">
+          <button mat-mini-fab (click)="imageInput.click()" color="primary" matTooltip="Choose">
+            <mat-icon>insert_photo</mat-icon>
+          </button>
+          <button mat-mini-fab (click)="onUploadClick()" color="primary" matTooltip="Upload"
+                  [disabled]="!selectedImage">
+            <mat-icon>publish</mat-icon>
+          </button>
+        </div>
       </div>
       <mat-progress-bar mode="determinate" [value]="uploadProgress"></mat-progress-bar>
     </div>

@@ -27,11 +27,18 @@
   float: right;
 }
 
-.image-upload-button-group {
-  display: inline-block;
-  float: right;
+.image-upload {
+  display: flex;
 
-  button {
-    margin: 0 5px;
+  .image-upload-input {
+    flex: 1;
+  }
+
+  .image-upload-button-group {
+    display: inline-block;
+
+    button {
+      margin: 0 5px;
+    }
   }
 }
