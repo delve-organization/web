@@ -29,12 +29,23 @@
   }
 }
 
-.tree-board-search-field-container {
-  width: fit-content;
-  margin: auto;
-  padding-top: 10px;
-}
-
 .tree-board-search-field {
   width: 200px;
+}
+
+.tree-board-header {
+  width: 90%;
+  margin: 0 auto;
+  padding-top: 10px;
+  display: flex;
+
+  > div {
+    width: auto;
+    flex: 1;
+  }
+}
+
+.right-button-group {
+  padding-top: 10px;
+  float: right;
 }

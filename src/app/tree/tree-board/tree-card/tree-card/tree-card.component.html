@@ -1,12 +1,14 @@
 <div class="card">
-    <div (click)="emitThumbClick()" class="thumb"
-         [style.backgroundImage]="'url(' + imageUrl+ ')'"
-         [style.backgroundColor]="color"></div>
+    <div (click)="navigateToTree()" class="thumb"
+         [style.backgroundImage]="'url(' + treeBoard.imageUrl+ ')'"
+         [style.backgroundColor]="treeBoard.color"></div>
     <article>
-        <h1 class="mat-h1">{{title}}</h1>
-        <p class="mat-body">{{description}}</p>
+        <h1 class="mat-h1">{{treeBoard.title}}</h1>
+        <p class="mat-body">{{treeBoard.description}}</p>
     </article>
     <div>
-        <ng-container [ngTemplateOutlet]="buttonRowTemplateOutlet"></ng-container>
+        <button mat-icon-button class="md-36 tree-card-button" (click)="openEditDialog()" *ngIf="treeBoard.editable" matTooltip="Edit">
+            <mat-icon>{{'settings'}}</mat-icon>
+        </button>
     </div>
 </div>

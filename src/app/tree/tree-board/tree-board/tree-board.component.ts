@@ -3,31 +3,49 @@ import {TreeService} from '../../tree.service';
 import {TreeBoardService} from './tree-board.service';
 import {TreeBoardDto} from '../tree-board.types';
 import {TreeDto} from '../../tree.types';
+import {TreeCardCreateDialogComponent} from '../tree-card/dialog/tree-card-create-dialog/tree-card-create-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
-  selector: 'delve-tree-board',
-  templateUrl: './tree-board.component.html',
-  styleUrls: ['./tree-board.component.scss']
+    selector: 'delve-tree-board',
+    templateUrl: './tree-board.component.html',
+    styleUrls: ['./tree-board.component.scss']
 })
 export class TreeBoardComponent implements OnInit {
 
-  public treeBoards: TreeBoardDto[];
-  public trees: TreeDto[];
-  public treeBoardsLoaded: boolean;
-  public treesLoaded: boolean;
-  public treeCardFilter = '';
+    public treeBoards: TreeBoardDto[];
+    public trees: TreeDto[];
+    public treeBoardsLoaded: boolean;
+    public treesLoaded: boolean;
+    public treeCardFilter = '';
 
-  constructor(private treeBoardService: TreeBoardService, private treeService: TreeService) {
-  }
+    constructor(private treeBoardService: TreeBoardService, private treeService: TreeService, private dialog: MatDialog) {
+    }
 
-  ngOnInit() {
-    this.treeBoardService.getAllAvailable().subscribe((response) => {
-      this.treeBoards = response;
-      this.treeBoardsLoaded = true;
-    });
-    this.treeService.getAllAvailableTrees().subscribe((response) => {
-      this.trees = response;
-      this.treesLoaded = true;
-    });
-  }
+    ngOnInit() {
+        this.treeBoardService.getAllAvailable().subscribe((response) => {
+            this.treeBoards = response;
+            this.treeBoardsLoaded = true;
+        });
+        this.treeService.getAllAvailableTrees().subscribe((response) => {
+            this.trees = response;
+            this.treesLoaded = true;
+        });
+    }
+
+    public openCreateDialog(): void {
+        const dialogRef = this.dialog.open(TreeCardCreateDialogComponent, {
+            width: '350px',
+            data: {
+                public: true,
+                trees: this.trees
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(result => {
+            if (result !== undefined && result.id !== undefined) {
+                this.treeBoards.push(result);
+            }
+        });
+    }
 }
