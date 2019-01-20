@@ -1,4 +1,4 @@
-import {TreeDto} from '../tree.types';
+import {Accessibility, TreeDto} from '../tree.types';
 
 export interface TreeBoardDto {
     id: number;
@@ -6,8 +6,10 @@ export interface TreeBoardDto {
     title: string;
     description: string;
     editable: boolean;
+    image: string;
     imageUrl: string;
     color: string;
+    accessibility: Accessibility;
 }
 
 export interface DeleteTreeCardDialogData {
@@ -16,6 +18,10 @@ export interface DeleteTreeCardDialogData {
 }
 
 export interface CreateTreeCardDialogData {
+    create: boolean;
+    treeBoards: TreeBoardDto[];
+    treeBoardIndex: number;
+    treeBoardId: number;
     trees: TreeDto[];
     title: string;
     description: string;

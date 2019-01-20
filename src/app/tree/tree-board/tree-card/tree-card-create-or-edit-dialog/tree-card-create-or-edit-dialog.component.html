@@ -1,4 +1,4 @@
-<h1 mat-dialog-title class="dialog-title">Create new card</h1>
+<h1 mat-dialog-title class="dialog-title">{{data.create ? 'Create new card' : 'Edit card'}}</h1>
 
 <div class="header-right">
     <mat-slide-toggle class="accessibility-toggle" [(ngModel)]="data.public" name="accessibility">
@@ -52,4 +52,5 @@
     <button mat-flat-button color="basic" mat-dialog-close="false">Cancel</button>
     <button mat-flat-button color="primary" (click)="onSaveClick()"
     [disabled]="!data.title || !data.description || !data.treeId || !data.image">Save</button>
+    <button mat-flat-button color="warn" (click)="openDeleteDialog()" *ngIf="data.create === false">Delete</button>
 </div>

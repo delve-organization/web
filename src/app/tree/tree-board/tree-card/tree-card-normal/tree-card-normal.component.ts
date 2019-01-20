@@ -1,8 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {TreeBoardDto} from '../../tree-board.types';
 import {Router} from '@angular/router';
-import {TreeCardDeleteDialogComponent} from '../tree-card-delete-dialog/tree-card-delete-dialog.component';
 import {MatDialog} from '@angular/material';
+import {TreeCardCreateOrEditDialogComponent} from '../tree-card-create-or-edit-dialog/tree-card-create-or-edit-dialog.component';
+import {Accessibility, TreeDto} from '../../../tree.types';
 
 @Component({
     selector: 'delve-tree-card-normal',
@@ -13,6 +14,7 @@ export class TreeCardNormalComponent implements OnInit {
 
     @Input() public treeBoards: TreeBoardDto[];
     @Input() public treeBoardIndex: number;
+    @Input() public trees: TreeDto[];
 
     public treeBoard: TreeBoardDto;
 
@@ -27,18 +29,27 @@ export class TreeCardNormalComponent implements OnInit {
         this.router.navigateByUrl('/tree-view/' + this.treeBoard.treeId);
     }
 
-    public openDeleteDialog(): void {
-        const dialogRef = this.dialog.open(TreeCardDeleteDialogComponent, {
-            width: '250px',
+    public openEditDialog(): void {
+        const dialogRef = this.dialog.open(TreeCardCreateOrEditDialogComponent, {
+            width: '350px',
             data: {
-                id: this.treeBoard.id,
-                title: this.treeBoard.title
+                create: false,
+                treeBoardId: this.treeBoard.id,
+                treeBoards: this.treeBoards,
+                treeBoardIndex: this.treeBoardIndex,
+                public: this.treeBoard.accessibility === Accessibility.PUBLIC,
+                title: this.treeBoard.title,
+                description: this.treeBoard.description,
+                image: this.treeBoard.image,
+                color: this.treeBoard.color,
+                treeId: this.treeBoard.treeId,
+                trees: this.trees
             }
         });
 
-        dialogRef.afterClosed().subscribe(deleted => {
-            if (deleted === true) {
-                this.treeBoards.splice(this.treeBoardIndex, 1);
+        dialogRef.afterClosed().subscribe(result => {
+            if (result !== undefined && result.id !== undefined) {
+                this.treeBoards[this.treeBoardIndex] = result;
             }
         });
     }

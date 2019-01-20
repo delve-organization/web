@@ -33,4 +33,17 @@ export class TreeBoardService {
             accessibility
         }, httpOptions);
     }
+
+    edit(treeBoardId: number, title: string, description: string, treeId: number,
+           imageName: string, color: string, accessibility: Accessibility): Observable<TreeBoardDto> {
+        return this.http.post<TreeBoardDto>('/api/tree-board/edit', {
+            treeBoardId,
+            title,
+            description,
+            treeId,
+            imageName,
+            color,
+            accessibility
+        }, httpOptions);
+    }
 }

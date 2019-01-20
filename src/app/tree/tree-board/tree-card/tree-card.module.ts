@@ -5,7 +5,7 @@ import {TreeCardNormalComponent} from './tree-card-normal/tree-card-normal.compo
 import {TreeCardCreateComponent} from './tree-card-create/tree-card-create.component';
 import {TreeCardDeleteDialogComponent} from './tree-card-delete-dialog/tree-card-delete-dialog.component';
 import {MaterialModule} from '../../../common/material/material.module';
-import {TreeCardCreateDialogComponent} from './tree-card-create-dialog/tree-card-create-dialog.component';
+import {TreeCardCreateOrEditDialogComponent} from './tree-card-create-or-edit-dialog/tree-card-create-or-edit-dialog.component';
 import {FormsModule} from '@angular/forms';
 import {ColorPickerModule} from 'ngx-color-picker';
 
@@ -21,7 +21,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
         TreeCardNormalComponent,
         TreeCardCreateComponent,
         TreeCardDeleteDialogComponent,
-        TreeCardCreateDialogComponent
+        TreeCardCreateOrEditDialogComponent
     ],
     exports: [
         TreeCardNormalComponent,
@@ -29,7 +29,7 @@ import {ColorPickerModule} from 'ngx-color-picker';
     ],
     entryComponents: [
         TreeCardDeleteDialogComponent,
-        TreeCardCreateDialogComponent
+        TreeCardCreateOrEditDialogComponent
     ]
 })
 export class TreeCardModule {
