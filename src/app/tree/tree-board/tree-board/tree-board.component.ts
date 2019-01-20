@@ -35,7 +35,7 @@ export class TreeBoardComponent implements OnInit {
 
     public openCreateDialog(): void {
         this.dialog.open(TreeCardCreateDialogComponent, {
-            width: '350px',
+            width: '400px',
             data: {
                 trees: this.trees,
                 treeBoards: this.treeBoards,

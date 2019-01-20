@@ -34,7 +34,7 @@ export class TreeCardComponent implements OnInit {
 
     public openEditDialog(): void {
         const dialogRef = this.dialog.open(TreeCardEditDialogComponent, {
-            width: '350px',
+            width: '400px',
             data: {
                 trees: this.trees,
                 treeBoards: this.treeBoards,
