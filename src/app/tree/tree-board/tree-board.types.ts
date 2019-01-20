@@ -10,4 +10,5 @@ export interface TreeBoardDto {
     imageUrl: string;
     color: string;
     accessibility: Accessibility;
+    ownerName: string;
 }

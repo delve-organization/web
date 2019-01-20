@@ -62,17 +62,21 @@ h1 {
   margin: 2em 0 0 0;
 }
 
-.tree-card-button {
-  float: right;
-  margin: 4px;
-}
+.card-icon-group {
+  display: flex;
 
-figure{
-  width:100px; /*container-width*/
-  overflow:hidden; /*hide bounds of image */
-  margin:0;   /*reset margin of figure tag*/
-}
-figure img{
-  display:block; /*remove inline-block spaces*/
-  width:100%; /*make image streatch*/
+  > .flex-fill {
+    flex: 1;
+  }
+
+  > .tree-card-icon {
+    margin: 8px;
+    &:hover {
+      cursor: default;
+    }
+  }
+
+  > .tree-card-button-icon {
+    margin: 4px;
+  }
 }

@@ -1,14 +1,16 @@
 <div class="card">
     <div (click)="navigateToTree()" class="thumb"
-         [style.backgroundImage]="'url(' + treeBoard.imageUrl+ ')'"
+         [style.backgroundImage]="'url(' + treeBoard.imageUrl + ')'"
          [style.backgroundColor]="treeBoard.color"></div>
     <article>
         <h1 class="mat-h1">{{treeBoard.title}}</h1>
         <p class="mat-body">{{treeBoard.description}}</p>
     </article>
-    <div>
-        <button mat-icon-button class="md-36 tree-card-button" (click)="openEditDialog()" *ngIf="treeBoard.editable" matTooltip="Edit">
-            <mat-icon>{{'settings'}}</mat-icon>
+    <div class="card-icon-group">
+        <div class="flex-fill"></div>
+        <mat-icon class="tree-card-icon" matTooltip="Owner: {{treeBoard.ownerName}}">person</mat-icon>
+        <button mat-icon-button class="tree-card-icon-button" (click)="openEditDialog()" *ngIf="treeBoard.editable" matTooltip="Edit">
+            <mat-icon>settings</mat-icon>
         </button>
     </div>
 </div>
