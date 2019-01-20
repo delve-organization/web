@@ -2,8 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TreeBoardDto} from '../../tree-board.types';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
-import {TreeCardCreateOrEditDialogComponent} from '../tree-card-create-or-edit-dialog/tree-card-create-or-edit-dialog.component';
 import {Accessibility, TreeDto} from '../../../tree.types';
+import {TreeCardEditDialogComponent} from '../dialog/tree-card-edit-dialog/tree-card-edit-dialog.component';
 
 @Component({
     selector: 'delve-tree-card-normal',
@@ -30,20 +30,20 @@ export class TreeCardNormalComponent implements OnInit {
     }
 
     public openEditDialog(): void {
-        const dialogRef = this.dialog.open(TreeCardCreateOrEditDialogComponent, {
+        const dialogRef = this.dialog.open(TreeCardEditDialogComponent, {
             width: '350px',
             data: {
-                create: false,
-                treeBoardId: this.treeBoard.id,
-                treeBoards: this.treeBoards,
-                treeBoardIndex: this.treeBoardIndex,
-                public: this.treeBoard.accessibility === Accessibility.PUBLIC,
                 title: this.treeBoard.title,
                 description: this.treeBoard.description,
+                public: this.treeBoard.accessibility === Accessibility.PUBLIC,
                 image: this.treeBoard.image,
                 color: this.treeBoard.color,
+                trees: this.trees,
                 treeId: this.treeBoard.treeId,
-                trees: this.trees
+
+                treeBoards: this.treeBoards,
+                treeBoardIndex: this.treeBoardIndex,
+                treeBoardId: this.treeBoard.id
             }
         });
 
