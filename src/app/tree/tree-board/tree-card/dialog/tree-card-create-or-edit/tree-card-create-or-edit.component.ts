@@ -28,8 +28,8 @@ export class TreeCardCreateOrEditComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        if (this.data.treeBoard.image) {
-            this.selectedImageName = this.data.treeBoard.image;
+        if (this.data.treeCard.image) {
+            this.selectedImageName = this.data.treeCard.image;
         }
     }
 
@@ -37,7 +37,7 @@ export class TreeCardCreateOrEditComponent implements OnInit {
         this.selectedImage = event.target.files[0];
         this.selectedImageName = this.selectedImage.name;
         this.uploadProgress = 0;
-        this.data.treeBoard.image = undefined;
+        this.data.treeCard.image = undefined;
     }
 
     public onUploadClick(): void {
@@ -49,8 +49,8 @@ export class TreeCardCreateOrEditComponent implements OnInit {
             } else if (event instanceof HttpResponse) {
                 const imageUpload: ImageUploadDto = event.body as ImageUploadDto;
 
-                this.data.treeBoard.image = imageUpload.imageName;
-                this.data.treeBoard.imageUrl = imageUpload.imageUrl;
+                this.data.treeCard.image = imageUpload.imageName;
+                this.data.treeCard.imageUrl = imageUpload.imageUrl;
                 this.imageChanged = true;
                 this.selectedImage = undefined;
             }

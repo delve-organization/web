@@ -1,12 +1,12 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {TreeBoardDto} from '../../tree-board.types';
+import {TreeCardDto} from './tree-card.types';
 
 @Pipe({
   name: 'name'
 })
-export class TreeBoardNamePipe implements PipeTransform {
+export class TreeCardNamePipe implements PipeTransform {
 
-  transform(items: TreeBoardDto[], filter: string): TreeBoardDto[] {
+  transform(items: TreeCardDto[], filter: string): TreeCardDto[] {
     if (!items || !filter) {
       return items;
     }

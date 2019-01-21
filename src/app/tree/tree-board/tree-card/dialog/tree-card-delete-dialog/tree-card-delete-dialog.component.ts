@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {TreeBoardService} from '../../../tree-board/tree-board.service';
 import {DeleteTreeCardDialogData} from '../../tree-card.types';
+import {TreeCardService} from '../../tree-card.service';
 
 @Component({
     selector: 'delve-tree-card-delete-dialog',
@@ -12,11 +12,11 @@ export class TreeCardDeleteDialogComponent {
 
     constructor(public dialogRef: MatDialogRef<TreeCardDeleteDialogComponent>,
                 @Inject(MAT_DIALOG_DATA) public data: DeleteTreeCardDialogData,
-                private treeBoardService: TreeBoardService) {
+                private treeCardService: TreeCardService) {
     }
 
     onYesClick(): void {
-        this.treeBoardService.delete(this.data.id).subscribe(() => {
+        this.treeCardService.delete(this.data.id).subscribe(() => {
             this.dialogRef.close(true);
         });
     }

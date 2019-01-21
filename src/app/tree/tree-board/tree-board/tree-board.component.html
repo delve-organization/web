@@ -18,9 +18,9 @@
     </div>
 </div>
 
-<div *ngIf="treeBoardsLoaded && treesLoaded; else loading" class="band">
-    <div *ngFor="let treeBoard of treeBoards | name: treeCardFilter; let index = index">
-        <delve-tree-card [treeBoards]="treeBoards" [treeBoardIndex]="index" [trees]="trees"></delve-tree-card>
+<div *ngIf="treeCardsLoaded && treesLoaded; else loading" class="band">
+    <div *ngFor="let treeCard of treeCards | name: treeCardFilter; let index = index">
+        <delve-tree-card [treeCards]="treeCards" [treeCardIndex]="index" [trees]="trees"></delve-tree-card>
     </div>
 </div>
 <ng-template #loading>

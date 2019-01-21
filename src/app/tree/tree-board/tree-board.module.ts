@@ -6,9 +6,9 @@ import {TreeBoardRoutingModule} from './tree-board-routing.module';
 import {TreeService} from '../tree.service';
 import {MaterialModule} from '../../common/material/material.module';
 import {FormsModule} from '@angular/forms';
-import {TreeBoardService} from './tree-board/tree-board.service';
-import {TreeBoardNamePipe} from './tree-board/pipes/tree-board.name.pipe';
 import {TreeCardModule} from './tree-card/tree-card.module';
+import {TreeCardService} from './tree-card/tree-card.service';
+import {TreeCardNamePipe} from './tree-card/tree-card.name.pipe';
 
 @NgModule({
     imports: [
@@ -21,11 +21,11 @@ import {TreeCardModule} from './tree-card/tree-card.module';
     ],
     declarations: [
         TreeBoardComponent,
-        TreeBoardNamePipe
+        TreeCardNamePipe
     ],
     providers: [
         TreeService,
-        TreeBoardService
+        TreeCardService
     ]
 })
 export class TreeBoardModule {

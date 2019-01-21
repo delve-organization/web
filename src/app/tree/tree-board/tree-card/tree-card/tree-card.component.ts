@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {TreeBoardDto} from '../../tree-board.types';
 import {Accessibility, TreeDto} from '../../../tree.types';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {TreeCardEditDialogComponent} from '../dialog/tree-card-edit-dialog/tree-card-edit-dialog.component';
+import {TreeCardDto} from '../tree-card.types';
 
 @Component({
     selector: 'delve-tree-card',
@@ -12,24 +12,24 @@ import {TreeCardEditDialogComponent} from '../dialog/tree-card-edit-dialog/tree-
 })
 export class TreeCardComponent implements OnInit {
 
-    @Input() public treeBoards: TreeBoardDto[];
-    @Input() public treeBoardIndex: number;
+    @Input() public treeCards: TreeCardDto[];
+    @Input() public treeCardIndex: number;
     @Input() public trees: TreeDto[];
 
-    public treeBoard: TreeBoardDto;
+    public treeCard: TreeCardDto;
 
-    private pristineTreeBoard: TreeBoardDto;
+    private pristineTreeCard: TreeCardDto;
 
     constructor(private router: Router, private dialog: MatDialog) {
     }
 
     ngOnInit(): void {
-        this.treeBoard = this.treeBoards[this.treeBoardIndex];
-        this.pristineTreeBoard = Object.assign({}, this.treeBoard);
+        this.treeCard = this.treeCards[this.treeCardIndex];
+        this.pristineTreeCard = Object.assign({}, this.treeCard);
     }
 
     public navigateToTree(): void {
-        this.router.navigateByUrl('/tree-view/' + this.treeBoard.treeId);
+        this.router.navigateByUrl('/tree-view/' + this.treeCard.treeId);
     }
 
     public openEditDialog(): void {
@@ -37,18 +37,18 @@ export class TreeCardComponent implements OnInit {
             width: '400px',
             data: {
                 trees: this.trees,
-                treeBoards: this.treeBoards,
-                treeBoard: this.treeBoard,
-                treeBoardIndex: this.treeBoardIndex,
-                public: this.treeBoard.accessibility === Accessibility.PUBLIC
+                treeCards: this.treeCards,
+                treeCard: this.treeCard,
+                treeCardIndex: this.treeCardIndex,
+                public: this.treeCard.accessibility === Accessibility.PUBLIC
             }
         });
 
         dialogRef.afterClosed().subscribe(saved => {
             if (saved === true) {
-                this.pristineTreeBoard = Object.assign({}, this.treeBoard);
+                this.pristineTreeCard = Object.assign({}, this.treeCard);
             } else {
-                this.treeBoard = Object.assign({}, this.pristineTreeBoard);
+                this.treeCard = Object.assign({}, this.pristineTreeCard);
             }
         });
     }

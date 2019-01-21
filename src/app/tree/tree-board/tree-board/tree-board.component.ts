@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {TreeService} from '../../tree.service';
-import {TreeBoardService} from './tree-board.service';
-import {TreeBoardDto} from '../tree-board.types';
 import {TreeDto} from '../../tree.types';
 import {TreeCardCreateDialogComponent} from '../tree-card/dialog/tree-card-create-dialog/tree-card-create-dialog.component';
 import {MatDialog} from '@angular/material';
+import {TreeCardDto} from '../tree-card/tree-card.types';
+import {TreeCardService} from '../tree-card/tree-card.service';
 
 @Component({
     selector: 'delve-tree-board',
@@ -13,19 +13,19 @@ import {MatDialog} from '@angular/material';
 })
 export class TreeBoardComponent implements OnInit {
 
-    public treeBoards: TreeBoardDto[];
+    public treeCards: TreeCardDto[];
     public trees: TreeDto[];
-    public treeBoardsLoaded: boolean;
+    public treeCardsLoaded: boolean;
     public treesLoaded: boolean;
     public treeCardFilter = '';
 
-    constructor(private treeBoardService: TreeBoardService, private treeService: TreeService, private dialog: MatDialog) {
+    constructor(private treeCardService: TreeCardService, private treeService: TreeService, private dialog: MatDialog) {
     }
 
     ngOnInit() {
-        this.treeBoardService.getAllAvailable().subscribe((response) => {
-            this.treeBoards = response;
-            this.treeBoardsLoaded = true;
+        this.treeCardService.getAllAvailable().subscribe((response) => {
+            this.treeCards = response;
+            this.treeCardsLoaded = true;
         });
         this.treeService.getAllAvailableTrees().subscribe((response) => {
             this.trees = response;
@@ -38,8 +38,8 @@ export class TreeBoardComponent implements OnInit {
             width: '400px',
             data: {
                 trees: this.trees,
-                treeBoards: this.treeBoards,
-                treeBoard: {},
+                treeCards: this.treeCards,
+                treeCard: {},
                 public: true
             }
         });

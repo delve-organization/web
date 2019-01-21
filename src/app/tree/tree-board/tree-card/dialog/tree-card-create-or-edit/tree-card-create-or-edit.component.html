@@ -6,23 +6,23 @@
     </mat-icon>
   </mat-slide-toggle>
 
-  <mat-icon class="color-picker-icon" matTooltip="Color" [(colorPicker)]="data.treeBoard.color"
-            (colorPickerChange)="onColorPickerChange()" [style.color]="data.treeBoard.color">palette
+  <mat-icon class="color-picker-icon" matTooltip="Color" [(colorPicker)]="data.treeCard.color"
+            (colorPickerChange)="onColorPickerChange()" [style.color]="data.treeCard.color">palette
   </mat-icon>
 </form>
 
 <div mat-dialog-content>
   <form #cardFrom="ngForm">
     <mat-form-field class="form-full-width">
-      <input matInput placeholder="Title" [(ngModel)]="data.treeBoard.title" name="title">
+      <input matInput placeholder="Title" [(ngModel)]="data.treeCard.title" name="title">
     </mat-form-field>
 
     <mat-form-field class="form-full-width">
-      <input matInput placeholder="Description" [(ngModel)]="data.treeBoard.description" name="description">
+      <input matInput placeholder="Description" [(ngModel)]="data.treeCard.description" name="description">
     </mat-form-field>
 
     <mat-form-field class="form-full-width">
-      <mat-select placeholder="Tree" [(ngModel)]="data.treeBoard.treeId" name="tree">
+      <mat-select placeholder="Tree" [(ngModel)]="data.treeCard.treeId" name="tree">
         <mat-option *ngFor="let tree of data.trees" [value]="tree.id">
           {{tree.title}}
         </mat-option>
@@ -58,8 +58,8 @@
   <button mat-flat-button color="primary" (click)="onSaveClick()"
           [disabled]="(cardFrom.form.pristine && headerForm.form.pristine
           && !colorChanged && !imageChanged)
-          || !data.treeBoard.title || !data.treeBoard.description
-          || !data.treeBoard.treeId || !data.treeBoard.image">
+          || !data.treeCard.title || !data.treeCard.description
+          || !data.treeCard.treeId || !data.treeCard.image">
     <mat-icon>save</mat-icon>
     Save
   </button>
