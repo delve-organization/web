@@ -292,9 +292,9 @@
     leader-line "^1.0.5"
     tslib "^1.9.0"
 
-"@ping/pi-tree-chart@0.0.3":
-  version "0.0.3"
-  resolved "http://rsptn.ddns.net:4441/@ping%2fpi-tree-chart/-/pi-tree-chart-0.0.3.tgz#c69e18dcfbae5e439247534af9b8b82303e02628"
+"@ping/pi-tree-chart@0.0.4":
+  version "0.0.4"
+  resolved "http://rsptn.ddns.net:4441/@ping%2fpi-tree-chart/-/pi-tree-chart-0.0.4.tgz#f13448a8728d847d2405be6bc186bfcf5bec54b2"
   dependencies:
     "@ping/pi-leader-line" "0.0.1"
     tslib "^1.9.0"
