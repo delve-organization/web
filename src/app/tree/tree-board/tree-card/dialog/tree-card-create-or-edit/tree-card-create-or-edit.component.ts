@@ -3,6 +3,8 @@ import {TreeCardDialogData} from '../../tree-card.types';
 import {HttpEventType, HttpResponse} from '@angular/common/http';
 import {ImageService} from '../../../../../common/services/image.service';
 import {ImageUploadDto} from '../../../../../common/types/image.types';
+import {Accessibility, TreeDto} from '../../../../tree.types';
+import {MatSelectChange} from '@angular/material';
 
 @Component({
     selector: 'delve-tree-card-create-or-edit',
@@ -21,6 +23,8 @@ export class TreeCardCreateOrEditComponent implements OnInit {
     public selectedImageName: string;
     public uploadProgress: number;
 
+    public accessibilityDisabled: boolean;
+
     public colorChanged: boolean;
     public imageChanged: boolean;
 
@@ -31,6 +35,7 @@ export class TreeCardCreateOrEditComponent implements OnInit {
         if (this.data.treeCard.image) {
             this.selectedImageName = this.data.treeCard.image;
         }
+        this.updateAccessibility(this.data.treeCard.treeId);
     }
 
     public onFileChanged(event): void {
@@ -67,5 +72,19 @@ export class TreeCardCreateOrEditComponent implements OnInit {
 
     public onColorPickerChange(): void {
         this.colorChanged = true;
+    }
+
+    public onTreeSelectChange(event: MatSelectChange): void {
+        this.updateAccessibility(event.value);
+    }
+
+    private updateAccessibility(treeId: number): void {
+        const treeDto: TreeDto = this.data.trees.find(tree => tree.id === treeId);
+        if (treeDto.accessibility === Accessibility.PRIVATE) {
+            this.accessibilityDisabled = true;
+            this.data.public = false;
+        } else {
+            this.accessibilityDisabled = false;
+        }
     }
 }

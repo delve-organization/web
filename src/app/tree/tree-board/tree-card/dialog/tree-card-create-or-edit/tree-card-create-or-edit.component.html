@@ -1,7 +1,7 @@
 <h1 mat-dialog-title class="dialog-title">{{title}}</h1>
 
 <form class="header-right" #headerForm="ngForm">
-  <mat-slide-toggle class="accessibility-toggle" [(ngModel)]="data.public" name="accessibility">
+  <mat-slide-toggle class="accessibility-toggle" [(ngModel)]="data.public" name="accessibility" [disabled]="accessibilityDisabled">
     <mat-icon matTooltip="{{data.public ? 'Public' : 'Private'}}">{{data.public ? 'lock_open' : 'lock'}}
     </mat-icon>
   </mat-slide-toggle>
@@ -22,7 +22,7 @@
     </mat-form-field>
 
     <mat-form-field class="form-full-width">
-      <mat-select placeholder="Tree" [(ngModel)]="data.treeCard.treeId" name="tree">
+      <mat-select placeholder="Tree" [(ngModel)]="data.treeCard.treeId" name="tree" (selectionChange)="onTreeSelectChange($event)">
         <mat-option *ngFor="let tree of data.trees" [value]="tree.id">
           {{tree.title}}
         </mat-option>
