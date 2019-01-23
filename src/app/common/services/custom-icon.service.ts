@@ -14,6 +14,8 @@ export class CustomIconService {
         this.register('delve', 'shovel');
         this.register('bitbucket', 'bitbucket');
         this.register('github', 'github');
+        this.register('united-kingdom', 'united-kingdom');
+        this.register('hungary', 'hungary');
     }
 
     private register(name: string, svg: string): void {

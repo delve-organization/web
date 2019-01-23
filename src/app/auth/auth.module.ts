@@ -5,18 +5,20 @@ import {RegisterComponent} from './register/register.component';
 import {MaterialModule} from '../common/material/material.module';
 import {FormsModule} from '@angular/forms';
 import {AuthRoutingModule} from './routing/auth-routing.module';
+import {DelveCommonModule} from '../common/delve-common.module';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    MaterialModule,
-    FormsModule
-  ],
-  declarations: [
-    LoginComponent,
-    RegisterComponent
-  ]
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        MaterialModule,
+        FormsModule,
+        DelveCommonModule
+    ],
+    declarations: [
+        LoginComponent,
+        RegisterComponent
+    ]
 })
 export class AuthModule {
 }

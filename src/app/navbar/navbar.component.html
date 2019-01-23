@@ -12,6 +12,9 @@
     <button mat-icon-button matTooltip="Sign out" (click)="logout()" *ngIf="isLoggedIn">
       <mat-icon>power_settings_new</mat-icon>
     </button>
+    <button mat-icon-button matTooltip="Toggle language" (click)="changeLanguage()">
+      <mat-icon svgIcon="{{selectedLanguage.icon}}"></mat-icon>
+    </button>
     <button mat-button (click)="openSourceOnNewTab()">
       <mat-icon svgIcon="github"></mat-icon>
       GitHub

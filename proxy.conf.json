@@ -3,7 +3,7 @@
     "target": "https://localhost:8090",
     "secure": false
   },
-  "/images": {
+  "/public": {
     "target": "https://localhost:8090",
     "secure": false
   }
