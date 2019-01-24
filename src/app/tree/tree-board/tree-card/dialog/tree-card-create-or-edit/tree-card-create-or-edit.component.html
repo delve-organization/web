@@ -2,11 +2,12 @@
 
 <form class="header-right" #headerForm="ngForm">
   <mat-slide-toggle class="accessibility-toggle" [(ngModel)]="data.public" name="accessibility" [disabled]="accessibilityDisabled">
-    <mat-icon matTooltip="{{data.public ? 'Public' : 'Private'}}">{{data.public ? 'lock_open' : 'lock'}}
+    <mat-icon matTooltip="{{(data.public ? 'function.treecard.edit.tooltip.accessibility.public' : 'function.treecard.edit.tooltip.accessibility.private') | translate}}">
+      {{data.public ? 'lock_open' : 'lock'}}
     </mat-icon>
   </mat-slide-toggle>
 
-  <mat-icon class="color-picker-icon" matTooltip="Color" [(colorPicker)]="data.treeCard.color"
+  <mat-icon class="color-picker-icon" matTooltip="{{'function.treecard.edit.tooltip.color' | translate}}" [(colorPicker)]="data.treeCard.color"
             (colorPickerChange)="onColorPickerChange()" [style.color]="data.treeCard.color">palette
   </mat-icon>
 </form>
@@ -14,15 +15,15 @@
 <div mat-dialog-content>
   <form #cardFrom="ngForm">
     <mat-form-field class="form-full-width">
-      <input matInput placeholder="Title" [(ngModel)]="data.treeCard.title" name="title">
+      <input matInput placeholder="{{'function.treecard.edit.input.placeholder.title' | translate}}" [(ngModel)]="data.treeCard.title" name="title">
     </mat-form-field>
 
     <mat-form-field class="form-full-width">
-      <input matInput placeholder="Description" [(ngModel)]="data.treeCard.description" name="description">
+      <input matInput placeholder="{{'function.treecard.edit.input.placeholder.description' | translate}}" [(ngModel)]="data.treeCard.description" name="description">
     </mat-form-field>
 
     <mat-form-field class="form-full-width">
-      <mat-select placeholder="Tree" [(ngModel)]="data.treeCard.treeId" name="tree" (selectionChange)="onTreeSelectChange($event)">
+      <mat-select placeholder="{{'function.treecard.edit.input.placeholder.tree' | translate}}" [(ngModel)]="data.treeCard.treeId" name="tree" (selectionChange)="onTreeSelectChange($event)">
         <mat-option *ngFor="let tree of data.trees" [value]="tree.id">
           {{tree.title}}
         </mat-option>
@@ -33,13 +34,13 @@
       <form class="image-upload" #imageUploadForm="ngForm">
         <input type="file" accept=".png" (change)="onFileChanged($event)" hidden #imageInput>
         <mat-form-field class="image-upload-input">
-          <input matInput disabled placeholder="Image" [(ngModel)]="selectedImageName" name="image">
+          <input matInput disabled placeholder="{{'function.treecard.edit.input.placeholder.image' | translate}}" [(ngModel)]="selectedImageName" name="image">
         </mat-form-field>
         <div class="image-upload-button-group">
-          <button mat-mini-fab (click)="imageInput.click()" color="primary" matTooltip="Choose">
+          <button mat-mini-fab (click)="imageInput.click()" color="primary" matTooltip="{{'function.treecard.edit.tooltip.image.choose' | translate}}">
             <mat-icon>insert_photo</mat-icon>
           </button>
-          <button mat-mini-fab (click)="onUploadClick()" color="primary" matTooltip="Upload"
+          <button mat-mini-fab (click)="onUploadClick()" color="primary" matTooltip="{{'function.treecard.edit.tooltip.image.upload' | translate}}"
                   [disabled]="!selectedImage">
             <mat-icon>publish</mat-icon>
           </button>
@@ -53,7 +54,7 @@
 <div mat-dialog-actions class="dialog-button-row">
   <button mat-flat-button color="basic" mat-dialog-close="false">
     <mat-icon>cancel</mat-icon>
-    Cancel
+    {{'function.treecard.edit.button.cancel' | translate}}
   </button>
   <button mat-flat-button color="primary" (click)="onSaveClick()"
           [disabled]="(cardFrom.form.pristine && headerForm.form.pristine
@@ -61,10 +62,10 @@
           || !data.treeCard.title || !data.treeCard.description
           || !data.treeCard.treeId || !data.treeCard.image">
     <mat-icon>save</mat-icon>
-    Save
+    {{'function.treecard.edit.button.save' | translate}}
   </button>
   <button mat-flat-button color="warn" (click)="onDeleteClick()" *ngIf="deleteVisible">
     <mat-icon>delete</mat-icon>
-    Delete
+    {{'function.treecard.edit.button.delete' | translate}}
   </button>
 </div>

@@ -4,27 +4,27 @@
            [matSortActive]="defaultPageable.orderBy">
 
       <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'function.admin.table.header.id' | translate}}</th>
         <td mat-cell *matCellDef="let user"> {{user.id}}</td>
       </ng-container>
 
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'function.admin.table.header.name' | translate}}</th>
         <td mat-cell *matCellDef="let user"> {{user.name}}</td>
       </ng-container>
 
       <ng-container matColumnDef="username">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Username</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>{{'function.admin.table.header.username' | translate}}</th>
         <td mat-cell *matCellDef="let user"> {{user.username}}</td>
       </ng-container>
 
       <ng-container matColumnDef="email">
-        <th mat-header-cell *matHeaderCellDef> Email</th>
+        <th mat-header-cell *matHeaderCellDef>{{'function.admin.table.header.email' | translate}}</th>
         <td mat-cell *matCellDef="let user"> {{user.email}}</td>
       </ng-container>
 
       <ng-container matColumnDef="roles">
-        <th mat-header-cell *matHeaderCellDef> Roles</th>
+        <th mat-header-cell *matHeaderCellDef>{{'function.admin.table.header.roles' | translate}}</th>
         <td mat-cell *matCellDef="let user">
           <button *ngFor="let availableRole of availableRoles" mat-icon-button [matTooltip]="availableRole.tooltip"
                   (click)="toggleRole(user, availableRole)">
@@ -49,7 +49,7 @@
   <div class="admin-component-button">
     <button mat-raised-button (click)="onSubmit(data)" color="primary">
       <mat-icon>save</mat-icon>
-      Update
+      {{'function.admin.button.update' | translate}}
     </button>
   </div>
 </div>

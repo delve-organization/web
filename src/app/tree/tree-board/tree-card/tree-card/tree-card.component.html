@@ -8,8 +8,8 @@
     </article>
     <div class="card-icon-group">
         <div class="flex-fill"></div>
-        <mat-icon class="tree-card-icon" matTooltip="Owner: {{treeCard.ownerName}}">person</mat-icon>
-        <button mat-icon-button class="tree-card-icon-button" (click)="openEditDialog()" *ngIf="treeCard.editable" matTooltip="Edit">
+        <mat-icon class="tree-card-icon" matTooltip="{{'function.treecard.tooltip.owner' | translate: {'name': treeCard.ownerName} }}">person</mat-icon>
+        <button mat-icon-button class="tree-card-icon-button" (click)="openEditDialog()" *ngIf="treeCard.editable" matTooltip="{{'function.treecard.tooltip.edit' | translate}}">
             <mat-icon>settings</mat-icon>
         </button>
     </div>

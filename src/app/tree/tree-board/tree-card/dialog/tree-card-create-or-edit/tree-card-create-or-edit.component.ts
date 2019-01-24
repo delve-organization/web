@@ -35,7 +35,9 @@ export class TreeCardCreateOrEditComponent implements OnInit {
         if (this.data.treeCard.image) {
             this.selectedImageName = this.data.treeCard.image;
         }
-        this.updateAccessibility(this.data.treeCard.treeId);
+        if (this.data.treeCard.treeId) {
+            this.updateAccessibility(this.data.treeCard.treeId);
+        }
     }
 
     public onFileChanged(event): void {

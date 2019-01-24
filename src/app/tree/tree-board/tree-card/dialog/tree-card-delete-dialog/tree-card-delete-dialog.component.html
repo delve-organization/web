@@ -1,8 +1,8 @@
-<h1 mat-dialog-title>Warning</h1>
+<h1 mat-dialog-title>{{'function.treecard.delete.label.title' | translate}}</h1>
 <div mat-dialog-content>
-    <p class="mat-body">Do you really want to delete <b>{{data.title}}</b>?</p>
+    <p class="mat-body" [innerHtml]="'function.treecard.delete.label.description' | translate: {'title': data.title}"></p>
 </div>
 <div mat-dialog-actions class="dialog-button-row">
-    <button mat-flat-button color="basic" mat-dialog-close="false">Cancel</button>
-    <button mat-flat-button color="warn" (click)="onYesClick()">Yes</button>
+    <button mat-flat-button color="basic" mat-dialog-close="false">{{'function.treecard.delete.button.cancel' | translate}}</button>
+    <button mat-flat-button color="warn" (click)="onYesClick()">{{'function.treecard.delete.button.yes' | translate}}</button>
 </div>

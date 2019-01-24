@@ -8,13 +8,15 @@ import {ColorPickerModule} from 'ngx-color-picker';
 import {TreeCardCreateDialogComponent} from './dialog/tree-card-create-dialog/tree-card-create-dialog.component';
 import {TreeCardEditDialogComponent} from './dialog/tree-card-edit-dialog/tree-card-edit-dialog.component';
 import {TreeCardCreateOrEditComponent} from './dialog/tree-card-create-or-edit/tree-card-create-or-edit.component';
+import {DelveCommonModule} from '../../../common/delve-common.module';
 
 @NgModule({
     imports: [
         CommonModule,
         MaterialModule,
         FormsModule,
-        ColorPickerModule
+        ColorPickerModule,
+        DelveCommonModule
     ],
     declarations: [
         TreeCardComponent,

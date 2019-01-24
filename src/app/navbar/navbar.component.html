@@ -6,13 +6,13 @@
     </button>
     <span class="navbar-spacer"></span>
 
-    <button mat-icon-button matTooltip="Admin" (click)="navigateToAdmin()" *ngIf="isAdmin">
+    <button mat-icon-button matTooltip="{{'function.navbar.tooltip.admin' | translate}}" (click)="navigateToAdmin()" *ngIf="isAdmin">
       <mat-icon>security</mat-icon>
     </button>
-    <button mat-icon-button matTooltip="Sign out" (click)="logout()" *ngIf="isLoggedIn">
+    <button mat-icon-button matTooltip="{{'function.navbar.tooltip.signout' | translate}}" (click)="logout()" *ngIf="isLoggedIn">
       <mat-icon>power_settings_new</mat-icon>
     </button>
-    <button mat-icon-button matTooltip="Toggle language" (click)="changeLanguage()">
+    <button mat-icon-button matTooltip="{{'function.navbar.tooltip.language' | translate}}" (click)="changeLanguage()">
       <mat-icon svgIcon="{{selectedLanguage.icon}}"></mat-icon>
     </button>
     <button mat-button (click)="openSourceOnNewTab()">

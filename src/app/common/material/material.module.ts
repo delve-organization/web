@@ -9,6 +9,7 @@ import {
     MatIconModule,
     MatInputModule,
     MatMenuModule,
+    MatPaginatorIntl,
     MatPaginatorModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
@@ -20,6 +21,8 @@ import {
     MatToolbarModule,
     MatTooltipModule
 } from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
+import {CustomMatPaginatorIntl} from './custom-mat-paginator-intl';
 
 @NgModule({
     imports: [
@@ -27,7 +30,7 @@ import {
         MatSnackBarModule, MatButtonModule, MatCheckboxModule, MatToolbarModule,
         MatIconModule, MatMenuModule, MatCardModule, MatProgressSpinnerModule,
         MatGridListModule, MatInputModule, MatTooltipModule, MatDialogModule,
-        MatSlideToggleModule, MatSelectModule, MatProgressBarModule
+        MatSlideToggleModule, MatSelectModule, MatProgressBarModule,
     ],
     exports: [
         MatButtonToggleModule, MatSortModule, MatPaginatorModule, MatTableModule,
@@ -35,6 +38,13 @@ import {
         MatIconModule, MatMenuModule, MatCardModule, MatProgressSpinnerModule,
         MatGridListModule, MatInputModule, MatTooltipModule, MatDialogModule,
         MatSlideToggleModule, MatSelectModule, MatProgressBarModule
+    ],
+    providers: [
+        {
+            provide: MatPaginatorIntl,
+            useFactory: (translate) => new CustomMatPaginatorIntl(translate),
+            deps: [TranslateService]
+        }
     ]
 })
 export class MaterialModule {
