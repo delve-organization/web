@@ -3,19 +3,26 @@ import {CustomIconService} from '../common/services/custom-icon.service';
 import {TokenStorageService} from '../auth/services/token-storage.service';
 import {Router} from '@angular/router';
 import {TranslateService} from '@ngx-translate/core';
+import {LocalStorageService} from '../common/services/local-storage.service';
+import {StorageKey} from '../common/types/storage.types';
 
 export interface Language {
     icon: string;
     locale: string;
 }
 
-const LANG_HU: Language = {
-    icon: 'hungary',
-    locale: 'hu'
-};
-const LANG_EN: Language = {
-    icon: 'united-kingdom',
-    locale: 'en'
+const HU = 'hu';
+const EN = 'en';
+
+const AVAILABLE_LANGUAGES: { [key: string]: Language } = {
+    'hu': {
+        icon: 'hungary',
+        locale: HU
+    },
+    'en': {
+        icon: 'united-kingdom',
+        locale: EN
+    },
 };
 
 @Component({
@@ -27,10 +34,11 @@ export class NavbarComponent implements OnInit {
 
     public isLoggedIn = false;
     public isAdmin = false;
-    public selectedLanguage: Language = LANG_EN;
+    public selectedLanguage: Language;
 
     constructor(private customIconService: CustomIconService, private token: TokenStorageService,
-                private router: Router, private translateService: TranslateService) {
+                private router: Router, private translateService: TranslateService,
+                private localStorageService: LocalStorageService) {
     }
 
     ngOnInit(): void {
@@ -41,6 +49,7 @@ export class NavbarComponent implements OnInit {
                 this.isAdmin = true;
             }
         }
+        this.selectedLanguage = AVAILABLE_LANGUAGES[this.localStorageService.getItem(StorageKey.LOCALE)];
     }
 
     public openSourceOnNewTab(): void {
@@ -57,15 +66,16 @@ export class NavbarComponent implements OnInit {
     }
 
     public changeLanguage(): void {
-        switch (this.selectedLanguage) {
-            case LANG_EN:
-                this.selectedLanguage = LANG_HU;
+        switch (this.selectedLanguage.locale) {
+            case EN:
+                this.selectedLanguage = AVAILABLE_LANGUAGES[HU];
                 break;
-            case LANG_HU:
-                this.selectedLanguage = LANG_EN;
+            case HU:
+                this.selectedLanguage = AVAILABLE_LANGUAGES[EN];
                 break;
         }
 
+        this.localStorageService.setItem(StorageKey.LOCALE, this.selectedLanguage.locale);
         this.translateService.setDefaultLang(this.selectedLanguage.locale);
     }
 }

@@ -4,7 +4,7 @@ import {AvailableRole, UserDto} from './admin.types';
 import {AdminService} from './admin.service';
 import {MatPaginator, MatSnackBar, MatSort} from '@angular/material';
 import {catchError, map, startWith, switchMap} from 'rxjs/operators';
-import {Pageable} from '../common/types/Pageable.types';
+import {Pageable} from '../common/types/pageable.types';
 
 const AVAILABLE_ROLES: AvailableRole[] = [
   {
