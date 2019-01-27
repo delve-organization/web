@@ -1,19 +1,20 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClient, HttpClientModule} from '@angular/common/http';
 import {CustomIconService} from './common/services/custom-icon.service';
 import {NavbarComponent} from './navbar/navbar.component';
 import {RoutingModule} from './routing/routing.module';
 import {MaterialModule} from './common/material/material.module';
 import {FormsModule} from '@angular/forms';
-import {httpInterceptorProviders} from './auth/services/auth-interceptor';
+import {AuthInterceptor} from './auth/services/auth-interceptor';
 import {AdminComponent} from './admin/admin.component';
 import {CommonModule} from '@angular/common';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoaderFactory} from './common/factory/translate.factory';
+import {ErrorHandlerService} from "./common/services/error-handler.service";
 
 @NgModule({
     declarations: [
@@ -37,7 +38,10 @@ import {TranslateHttpLoaderFactory} from './common/factory/translate.factory';
             }
         })
     ],
-    providers: [CustomIconService, httpInterceptorProviders],
+    providers: [
+        {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+        {provide: ErrorHandler, useClass: ErrorHandlerService}
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

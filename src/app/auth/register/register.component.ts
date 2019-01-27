@@ -1,38 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { SignupInfoTypes } from '../types/signup-info.types';
-import { AuthService } from '../services/auth.service';
-import { MatSnackBar } from '@angular/material';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {SignupInfoTypes} from '../types/signup-info.types';
+import {AuthService} from '../services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
-  selector: 'delve-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+    selector: 'delve-register',
+    templateUrl: './register.component.html',
+    styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
 
-  form: any = {};
-  signupInfo: SignupInfoTypes;
+    form: any = {};
+    signupInfo: SignupInfoTypes;
 
-  constructor(private authService: AuthService, private snackBar: MatSnackBar, private router: Router) { }
+    constructor(private authService: AuthService, private router: Router) {
+    }
 
-  ngOnInit() { }
+    ngOnInit() {
+    }
 
-  onSubmit() {
-    this.signupInfo = new SignupInfoTypes(
-      this.form.name,
-      this.form.username,
-      this.form.email,
-      this.form.password);
+    onSubmit() {
+        this.signupInfo = new SignupInfoTypes(
+            this.form.name,
+            this.form.username,
+            this.form.email,
+            this.form.password);
 
-    this.authService.signUp(this.signupInfo).subscribe(
-      data => {
-        this.router.navigateByUrl('/auth/login');
-       },
-      error => {
-        console.log(error);
-        this.snackBar.open(error.error.message);
-      }
-    );
-  }
+        this.authService.signUp(this.signupInfo).subscribe(
+            () => {
+                this.router.navigateByUrl('/auth/login');
+            }
+        );
+    }
 }

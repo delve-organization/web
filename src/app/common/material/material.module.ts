@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {
+    MAT_SNACK_BAR_DEFAULT_OPTIONS,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
