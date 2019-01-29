@@ -1,0 +1,5 @@
+<mat-list>
+  <mat-list-item class="error-item" *ngFor="let error of apiError.errors">
+    {{error.field}}: {{error.resourceKey | translate: error.arguments}}
+  </mat-list-item>
+</mat-list>

@@ -1,6 +1,5 @@
 import {NgModule} from '@angular/core';
 import {
-    MAT_SNACK_BAR_DEFAULT_OPTIONS,
     MatButtonModule,
     MatButtonToggleModule,
     MatCardModule,
@@ -9,6 +8,7 @@ import {
     MatGridListModule,
     MatIconModule,
     MatInputModule,
+    MatListModule,
     MatMenuModule,
     MatPaginatorIntl,
     MatPaginatorModule,
@@ -31,14 +31,14 @@ import {CustomMatPaginatorIntl} from './custom-mat-paginator-intl';
         MatSnackBarModule, MatButtonModule, MatCheckboxModule, MatToolbarModule,
         MatIconModule, MatMenuModule, MatCardModule, MatProgressSpinnerModule,
         MatGridListModule, MatInputModule, MatTooltipModule, MatDialogModule,
-        MatSlideToggleModule, MatSelectModule, MatProgressBarModule,
+        MatSlideToggleModule, MatSelectModule, MatProgressBarModule, MatListModule
     ],
     exports: [
         MatButtonToggleModule, MatSortModule, MatPaginatorModule, MatTableModule,
         MatSnackBarModule, MatButtonModule, MatCheckboxModule, MatToolbarModule,
         MatIconModule, MatMenuModule, MatCardModule, MatProgressSpinnerModule,
         MatGridListModule, MatInputModule, MatTooltipModule, MatDialogModule,
-        MatSlideToggleModule, MatSelectModule, MatProgressBarModule
+        MatSlideToggleModule, MatSelectModule, MatProgressBarModule, MatListModule
     ],
     providers: [
         {
