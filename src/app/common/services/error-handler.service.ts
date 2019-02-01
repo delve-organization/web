@@ -23,7 +23,7 @@ export class ErrorHandlerService implements ErrorHandler {
 
             snackBarService.showFromComponent(ApiErrorComponent, error.error);
         } else {
-            snackBarService.show(error.message);
+            console.error(error);
         }
     }
 }

@@ -7,23 +7,30 @@
 
         <mat-card-content>
             <mat-form-field class="register-card-input-field">
-                <input #name="ngModel" matInput type="text" placeholder="{{'function.auth.input.placeholder.name' | translate}}" [(ngModel)]="form.name" required>
+                <input [formControl]="name" matInput type="text"
+                       placeholder="{{'function.auth.input.placeholder.name' | translate}}">
+                <mat-error>{{getErrorMessage(name)}}</mat-error>
             </mat-form-field>
             <mat-form-field class="register-card-input-field">
-                <input #username="ngModel" matInput type="text" placeholder="{{'function.auth.input.placeholder.username' | translate}}" [(ngModel)]="form.username"
-                       required>
+                <input [formControl]="username" matInput type="text"
+                       placeholder="{{'function.auth.input.placeholder.username' | translate}}">
+                <mat-error>{{getErrorMessage(username)}}</mat-error>
             </mat-form-field>
             <mat-form-field class="register-card-input-field">
-                <input #email="ngModel" matInput type="text" placeholder="{{'function.auth.input.placeholder.email' | translate}}" [(ngModel)]="form.email" required>
+                <input [formControl]="email" matInput type="text"
+                       placeholder="{{'function.auth.input.placeholder.email' | translate}}">
+                <mat-error>{{getErrorMessage(email)}}</mat-error>
             </mat-form-field>
             <mat-form-field class="register-card-input-field">
-                <input #password="ngModel" matInput type="password" placeholder="{{'function.auth.input.placeholder.password' | translate}}" [(ngModel)]="form.password"
-                       required>
+                <input [formControl]="password" matInput type="password"
+                       placeholder="{{'function.auth.input.placeholder.password' | translate}}">
+                <mat-error>{{getErrorMessage(password)}}</mat-error>
             </mat-form-field>
         </mat-card-content>
 
         <button mat-raised-button (click)="onSubmit()" color="primary"
-                [disabled]="!name.valid || !username.valid || !email.valid || !password.valid">{{'function.auth.button.submit' | translate}}
+            [disabled]="!name.valid || !username.valid || !email.valid || !password.valid">
+            {{'function.auth.button.submit' | translate}}
         </button>
     </mat-card>
 

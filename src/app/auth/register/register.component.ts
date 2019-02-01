@@ -2,6 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {SignupInfoTypes} from '../types/signup-info.types';
 import {AuthService} from '../services/auth.service';
 import {Router} from '@angular/router';
+import {FormControl, Validators} from '@angular/forms';
+import {CustomValidators} from '../../common/custom-validators';
+import {ValidationMessageFn, ValidationMessageService} from '../../common/services/validation-message.service';
 
 @Component({
     selector: 'delve-register',
@@ -10,23 +13,33 @@ import {Router} from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-    form: any = {};
-    signupInfo: SignupInfoTypes;
+    getErrorMessage: ValidationMessageFn;
+    name: FormControl;
+    username: FormControl;
+    email: FormControl;
+    password: FormControl;
 
-    constructor(private authService: AuthService, private router: Router) {
+    constructor(private authService: AuthService, private router: Router, private validationMessageService: ValidationMessageService) {
     }
 
     ngOnInit() {
+        this.getErrorMessage = this.validationMessageService.errorMessage.bind(this.validationMessageService);
+
+        this.name = new FormControl(null, [Validators.required, CustomValidators.size(3, 50)]);
+        this.username = new FormControl(null, [Validators.required, CustomValidators.size(3, 50)]);
+        this.email = new FormControl(null, [Validators.required, CustomValidators.size(5, 60), Validators.email]);
+        this.password = new FormControl(null, [Validators.required, CustomValidators.size(6, 40)]);
     }
 
     onSubmit() {
-        this.signupInfo = new SignupInfoTypes(
-            this.form.name,
-            this.form.username,
-            this.form.email,
-            this.form.password);
+        const signupInfo = new SignupInfoTypes(
+            this.name.value,
+            this.username.value,
+            this.email.value,
+            this.password.value
+        );
 
-        this.authService.signUp(this.signupInfo).subscribe(
+        this.authService.signUp(signupInfo).subscribe(
             () => {
                 this.router.navigateByUrl('/auth/login');
             }

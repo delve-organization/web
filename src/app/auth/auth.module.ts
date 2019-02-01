@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {MaterialModule} from '../common/material/material.module';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AuthRoutingModule} from './routing/auth-routing.module';
 import {DelveCommonModule} from '../common/delve-common.module';
 
@@ -13,6 +13,7 @@ import {DelveCommonModule} from '../common/delve-common.module';
         AuthRoutingModule,
         MaterialModule,
         FormsModule,
+        ReactiveFormsModule,
         DelveCommonModule
     ],
     declarations: [
