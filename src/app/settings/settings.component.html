@@ -1,0 +1,29 @@
+<div style="padding: 32px">
+
+    <mat-card class="settings-card">
+        <div *ngIf="userLoaded; else loading">
+            <mat-card-header>
+                <mat-card-title>{{'function.settings.label.title' | translate}}</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <form #cardFrom="ngForm" [formGroup]="form">
+                    <mat-form-field class="settings-card-input-field">
+                        <input [formControl]="nameField" matInput type="text"
+                               placeholder="{{'function.auth.input.placeholder.name' | translate}}">
+                        <mat-error>{{getErrorMessage(nameField)}}</mat-error>
+                    </mat-form-field>
+                </form>
+            </mat-card-content>
+
+            <button mat-raised-button (click)="onSubmit()" color="primary"
+                    [disabled]="cardFrom.form.pristine || !nameField.valid">
+                {{'function.auth.button.submit' | translate}}
+            </button>
+        </div>
+    </mat-card>
+
+</div>
+<ng-template #loading>
+    <delve-loading></delve-loading>
+</ng-template>

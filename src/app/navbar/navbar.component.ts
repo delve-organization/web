@@ -62,7 +62,11 @@ export class NavbarComponent implements OnInit {
     }
 
     public navigateToAdmin(): void {
-        this.router.navigateByUrl('/user');
+        this.router.navigateByUrl('/admin');
+    }
+
+    public navigateToSettings(): void {
+        this.router.navigateByUrl('/settings');
     }
 
     public changeLanguage(): void {

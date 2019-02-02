@@ -9,6 +9,9 @@
     <button mat-icon-button matTooltip="{{'function.navbar.tooltip.admin' | translate}}" (click)="navigateToAdmin()" *ngIf="isAdmin">
       <mat-icon>security</mat-icon>
     </button>
+    <button mat-icon-button matTooltip="{{'function.navbar.tooltip.settings' | translate}}" (click)="navigateToSettings()" *ngIf="isLoggedIn">
+      <mat-icon>settings</mat-icon>
+    </button>
     <button mat-icon-button matTooltip="{{'function.navbar.tooltip.signout' | translate}}" (click)="logout()" *ngIf="isLoggedIn">
       <mat-icon>power_settings_new</mat-icon>
     </button>
