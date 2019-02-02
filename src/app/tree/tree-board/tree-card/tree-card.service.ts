@@ -19,7 +19,7 @@ export class TreeCardService {
     }
 
     delete(treeCardId: number): Observable<string> {
-        return this.http.post<string>('/api/tree-card/delete', treeCardId, httpOptions);
+        return this.http.post<string>('/api/tree-card/delete', {treeCardId}, httpOptions);
     }
 
     create(title: string, description: string, treeId: number,

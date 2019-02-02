@@ -5,6 +5,10 @@ import {ImageService} from '../../../../../common/services/image.service';
 import {ImageUploadDto} from '../../../../../common/types/image.types';
 import {Accessibility, TreeDto} from '../../../../tree.types';
 import {MatSelectChange} from '@angular/material';
+import {TokenStorageService} from '../../../../../auth/services/token-storage.service';
+import {ValidationMessageFn, ValidationMessageService} from '../../../../../common/services/validation-message.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {CustomValidators} from '../../../../../common/custom-validators';
 
 @Component({
     selector: 'delve-tree-card-create-or-edit',
@@ -24,11 +28,16 @@ export class TreeCardCreateOrEditComponent implements OnInit {
     public uploadProgress: number;
 
     public accessibilityDisabled: boolean;
-
     public colorChanged: boolean;
     public imageChanged: boolean;
 
-    constructor(private imageService: ImageService) {
+    getErrorMessage: ValidationMessageFn;
+    form: FormGroup;
+    titleField: FormControl;
+    descriptionField: FormControl;
+    treeField: FormControl;
+
+    constructor(private imageService: ImageService, private validationMessageService: ValidationMessageService) {
     }
 
     ngOnInit(): void {
@@ -38,6 +47,22 @@ export class TreeCardCreateOrEditComponent implements OnInit {
         if (this.data.treeCard.treeId) {
             this.updateAccessibility(this.data.treeCard.treeId);
         }
+        if (!this.data.treeCard.color) {
+            this.data.treeCard.color = 'black';
+        }
+
+        this.getErrorMessage = this.validationMessageService.errorMessage.bind(this.validationMessageService);
+        this.titleField = new FormControl(this.data.treeCard.title, [Validators.required]);
+        this.descriptionField = new FormControl(this.data.treeCard.description, [Validators.required]);
+        this.treeField = new FormControl(this.data.treeCard.treeId, [Validators.required]);
+        this.form = new FormGroup({
+            'title': this.titleField,
+            'description': this.descriptionField,
+            'tree': this.treeField
+        });
+        this.titleField.valueChanges.subscribe((value => this.data.treeCard.title = value));
+        this.descriptionField.valueChanges.subscribe((value => this.data.treeCard.description = value));
+        this.treeField.valueChanges.subscribe((value => this.data.treeCard.treeId = value));
     }
 
     public onFileChanged(event): void {
