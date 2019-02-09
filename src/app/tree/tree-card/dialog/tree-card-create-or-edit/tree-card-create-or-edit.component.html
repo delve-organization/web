@@ -31,8 +31,19 @@
 
         <mat-form-field class="form-full-width">
             <mat-select [formControl]="treeField" placeholder="{{'function.treecard.edit.input.placeholder.tree' | translate}}"
-                        (selectionChange)="onTreeSelectChange($event)">
-                <mat-option *ngFor="let tree of data.trees" [value]="tree.id">
+                        (selectionChange)="onTreeSelectChange()" [(value)]="selectedTree">
+                <mat-select-trigger>
+                    <div *ngIf="selectedTree && selectedTree.id !== -1; else addTreeTemplate">
+                        {{selectedTree.title}}
+                    </div>
+                    <ng-template #addTreeTemplate>
+                        <mat-icon>add</mat-icon>{{'function.treecard.edit.option.tree.create' | translate}}
+                    </ng-template>
+                </mat-select-trigger>
+                <mat-option [value]="newTree">
+                    <mat-icon>add</mat-icon>{{'function.treecard.edit.option.tree.create' | translate}}
+                </mat-option>
+                <mat-option *ngFor="let tree of data.trees" [value]="tree">
                     {{tree.title}}
                 </mat-option>
             </mat-select>

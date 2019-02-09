@@ -1,7 +1,7 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
 import {TreeCardDialogData} from '../../tree-card.types';
-import {Accessibility} from '../../../../tree.types';
+import {Accessibility} from '../../../tree.types';
 import {TreeCardService} from '../../tree-card.service';
 
 @Component({

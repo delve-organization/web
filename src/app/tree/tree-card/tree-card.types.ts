@@ -1,4 +1,4 @@
-import {Accessibility, TreeDto} from '../../tree.types';
+import {Accessibility, TreeDto} from '../tree.types';
 
 export interface TreeCardDto {
     id: number;

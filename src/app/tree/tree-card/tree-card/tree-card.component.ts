@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Accessibility, TreeDto} from '../../../tree.types';
+import {Accessibility, TreeDto} from '../../tree.types';
 import {Router} from '@angular/router';
 import {MatDialog} from '@angular/material';
 import {TreeCardEditDialogComponent} from '../dialog/tree-card-edit-dialog/tree-card-edit-dialog.component';

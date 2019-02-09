@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Accessibility} from '../../tree.types';
+import {Accessibility} from '../tree.types';
 import {TreeCardDto} from './tree-card.types';
 
 const httpOptions = {

@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {TreeService} from '../../tree.service';
 import {TreeDto} from '../../tree.types';
-import {TreeCardCreateDialogComponent} from '../tree-card/dialog/tree-card-create-dialog/tree-card-create-dialog.component';
+import {TreeCardCreateDialogComponent} from '../../tree-card/dialog/tree-card-create-dialog/tree-card-create-dialog.component';
 import {MatDialog} from '@angular/material';
-import {TreeCardDto} from '../tree-card/tree-card.types';
-import {TreeCardService} from '../tree-card/tree-card.service';
+import {TreeCardDto} from '../../tree-card/tree-card.types';
+import {TreeCardService} from '../../tree-card/tree-card.service';
 
 @Component({
     selector: 'delve-tree-board',

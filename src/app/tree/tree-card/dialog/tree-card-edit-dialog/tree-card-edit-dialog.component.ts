@@ -1,9 +1,9 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material';
 import {TreeCardDialogData} from '../../tree-card.types';
-import {ImageService} from '../../../../../common/services/image.service';
+import {ImageService} from '../../../../common/services/image.service';
 import {TreeCardDeleteDialogComponent} from '../tree-card-delete-dialog/tree-card-delete-dialog.component';
-import {Accessibility} from '../../../../tree.types';
+import {Accessibility} from '../../../tree.types';
 import {TreeCardService} from '../../tree-card.service';
 
 @Component({
