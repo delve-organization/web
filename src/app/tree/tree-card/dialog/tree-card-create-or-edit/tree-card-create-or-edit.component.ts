@@ -120,18 +120,22 @@ export class TreeCardCreateOrEditComponent implements OnInit {
     public onTreeSelectChange(): void {
         if (this.selectedTree.id === TreeCardCreateOrEditComponent.NEW_TREE_ID) {
             const dialogRef = this.dialog.open(TreeCreateDialogComponent, {
-                width: '250px',
+                width: '400px',
                 data: {
                     id: this.data.treeCard.id,
                     title: this.data.treeCard.title
                 }
             });
 
-            dialogRef.afterClosed().subscribe(deleted => {
-                // if (deleted === true) {
-                //     this.data.treeCards.splice(this.data.treeCardIndex, 1);
-                //     this.dialogRef.close(false);
-                // }
+            dialogRef.afterClosed().subscribe(savedTree => {
+                if (savedTree) {
+                    this.data.trees.push(savedTree);
+                    this.selectedTree = savedTree;
+                    this.treeField.setValue(savedTree);
+                } else {
+                    this.treeField.setValue(undefined);
+                    this.updateAccessibility();
+                }
             });
         } else {
             this.updateAccessibility();
@@ -139,7 +143,7 @@ export class TreeCardCreateOrEditComponent implements OnInit {
     }
 
     private updateAccessibility(): void {
-        if (this.selectedTree.accessibility === Accessibility.PRIVATE) {
+        if (this.selectedTree && this.selectedTree.accessibility === Accessibility.PRIVATE) {
             this.accessibilityDisabled = true;
             this.data.public = false;
         } else {

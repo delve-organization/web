@@ -25,3 +25,9 @@ export interface TreeCardDialogData {
     treeCardIndex: number;
     public: boolean;
 }
+
+export interface TreeDialogData {
+    title: string;
+    public: boolean;
+    rootNodeId: number;
+}

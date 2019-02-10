@@ -1,8 +1,30 @@
-<h1 mat-dialog-title>{{'function.treecard.delete.label.title' | translate}}</h1>
+<h1 mat-dialog-title class="dialog-title">{{'function.tree.edit.label.title.create' | translate}}</h1>
+
+<form class="header-right" #headerForm="ngForm">
+    <mat-slide-toggle class="accessibility-toggle" [(ngModel)]="data.public" name="accessibility">
+        <mat-icon matTooltip="{{(data.public ? 'function.tree.edit.tooltip.accessibility.public' : 'function.tree.edit.tooltip.accessibility.private') | translate}}">
+            {{data.public ? 'lock_open' : 'lock'}}
+        </mat-icon>
+    </mat-slide-toggle>
+</form>
+
 <div mat-dialog-content>
-    <p class="mat-body" [innerHtml]="'function.treecard.delete.label.description' | translate: {'title': data.title}"></p>
+    <form #treeFrom="ngForm" [formGroup]="form">
+        <mat-form-field class="form-full-width">
+            <input [formControl]="titleField" matInput type="text"
+                   placeholder="{{'function.tree.edit.input.placeholder.title' | translate}}">
+            <mat-error>{{getErrorMessage(titleField)}}</mat-error>
+        </mat-form-field>
+    </form>
 </div>
 <div mat-dialog-actions class="dialog-button-row">
-    <button mat-flat-button color="basic" mat-dialog-close="false">{{'function.treecard.delete.button.cancel' | translate}}</button>
-    <button mat-flat-button color="warn" (click)="onYesClick()">{{'function.treecard.delete.button.yes' | translate}}</button>
+    <button mat-flat-button color="basic" mat-dialog-close>
+        <mat-icon>cancel</mat-icon>
+        {{'function.tree.edit.button.cancel' | translate}}
+    </button>
+    <button mat-flat-button color="primary" (click)="onSaveClick()"
+            [disabled]="(treeFrom.form.pristine && headerForm.form.pristine)|| !titleField.valid">
+        <mat-icon>save</mat-icon>
+        {{'function.tree.edit.button.save' | translate}}
+    </button>
 </div>

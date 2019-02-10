@@ -40,11 +40,11 @@
                         <mat-icon>add</mat-icon>{{'function.treecard.edit.option.tree.create' | translate}}
                     </ng-template>
                 </mat-select-trigger>
-                <mat-option [value]="newTree">
-                    <mat-icon>add</mat-icon>{{'function.treecard.edit.option.tree.create' | translate}}
-                </mat-option>
                 <mat-option *ngFor="let tree of data.trees" [value]="tree">
                     {{tree.title}}
+                </mat-option>
+                <mat-option [value]="newTree">
+                    <mat-icon>add</mat-icon>{{'function.treecard.edit.option.tree.create' | translate}}
                 </mat-option>
             </mat-select>
             <mat-error>{{getErrorMessage(treeField)}}</mat-error>
@@ -74,7 +74,7 @@
     </form>
 </div>
 <div mat-dialog-actions class="dialog-button-row">
-    <button mat-flat-button color="basic" mat-dialog-close="false">
+    <button mat-flat-button color="basic" mat-dialog-close>
         <mat-icon>cancel</mat-icon>
         {{'function.treecard.edit.button.cancel' | translate}}
     </button>
