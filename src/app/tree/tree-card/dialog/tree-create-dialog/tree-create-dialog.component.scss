@@ -6,7 +6,7 @@
   display: inline-block;
 }
 
-.accessibility-toggle {
+.tree-toggle {
   margin-top: 5px;
 }
 
@@ -14,6 +14,10 @@
   width: 100%;
 }
 
-.header-right {
-  float: right;
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
 }

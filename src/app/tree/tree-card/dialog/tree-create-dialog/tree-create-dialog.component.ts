@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
-import {MatDialogRef} from '@angular/material';
-import {TreeDialogData} from '../../tree-card.types';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
+import {TreeCardDialogData, TreeDialogData} from '../../tree-card.types';
 import {ValidationMessageFn, ValidationMessageService} from '../../../../common/services/validation-message.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Accessibility} from '../../../tree.types';
+import {Accessibility, CreateTreeRequest} from '../../../tree.types';
 import {TreeService} from '../../../tree.service';
 
 @Component({
@@ -13,38 +13,43 @@ import {TreeService} from '../../../tree.service';
 })
 export class TreeCreateDialogComponent implements OnInit {
 
-    public data: TreeDialogData;
+    request: CreateTreeRequest;
+    newNode: boolean;
+    nodeToggleDisabled: boolean;
 
     getErrorMessage: ValidationMessageFn;
     form: FormGroup;
     titleField: FormControl;
 
-    constructor(public dialogRef: MatDialogRef<TreeCreateDialogComponent>,
+    constructor(private dialogRef: MatDialogRef<TreeCreateDialogComponent>,
                 private validationMessageService: ValidationMessageService,
-                private treeService: TreeService) {
+                private treeService: TreeService,
+                @Inject(MAT_DIALOG_DATA) public data: TreeDialogData) {
     }
 
     ngOnInit(): void {
-        this.data = {
+        this.request = {
             public: true,
             title: undefined,
             rootNodeId: 1 // todo: dummy data
         };
+        this.newNode = true;
+        this.nodeToggleDisabled = !this.data.trees.some(tree => tree.editable);
 
         // Fields
         this.getErrorMessage = this.validationMessageService.errorMessage.bind(this.validationMessageService);
-        this.titleField = new FormControl(this.data.title, [Validators.required]);
+        this.titleField = new FormControl(this.request.title, [Validators.required]);
         this.form = new FormGroup({
             'title': this.titleField
         });
-        this.titleField.valueChanges.subscribe((value => this.data.title = value));
+        this.titleField.valueChanges.subscribe((value => this.request.title = value));
     }
 
     public onSaveClick(): void {
         this.treeService.create(
-            this.data.title,
-            this.data.rootNodeId,
-            this.data.public ? Accessibility.PUBLIC : Accessibility.PRIVATE
+            this.request.title,
+            this.request.rootNodeId,
+            this.request.public ? Accessibility.PUBLIC : Accessibility.PRIVATE
         ).subscribe((savedTree) => {
             this.dialogRef.close(savedTree);
         });

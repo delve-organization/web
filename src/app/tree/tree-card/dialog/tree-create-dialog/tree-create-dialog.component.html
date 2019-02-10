@@ -1,20 +1,30 @@
-<h1 mat-dialog-title class="dialog-title">{{'function.tree.edit.label.title.create' | translate}}</h1>
+<div class="flex">
+    <h1 mat-dialog-title class="dialog-title flex-1">{{'function.tree.edit.label.title.create' | translate}}</h1>
 
-<form class="header-right" #headerForm="ngForm">
-    <mat-slide-toggle class="accessibility-toggle" [(ngModel)]="data.public" name="accessibility">
-        <mat-icon matTooltip="{{(data.public ? 'function.tree.edit.tooltip.accessibility.public' : 'function.tree.edit.tooltip.accessibility.private') | translate}}">
-            {{data.public ? 'lock_open' : 'lock'}}
-        </mat-icon>
-    </mat-slide-toggle>
-</form>
+    <form #headerForm="ngForm">
+        <mat-slide-toggle class="tree-toggle" [(ngModel)]="request.public" name="accessibility">
+            <mat-icon matTooltip="{{(request.public ? 'function.tree.edit.tooltip.accessibility.public' : 'function.tree.edit.tooltip.accessibility.private') | translate}}">
+                {{request.public ? 'lock_open' : 'lock'}}
+            </mat-icon>
+        </mat-slide-toggle>
+    </form>
+</div>
 
 <div mat-dialog-content>
     <form #treeFrom="ngForm" [formGroup]="form">
         <mat-form-field class="form-full-width">
-            <input [formControl]="titleField" matInput type="text"
-                   placeholder="{{'function.tree.edit.input.placeholder.title' | translate}}">
+            <input [formControl]="titleField" matInput type="text" placeholder="{{'function.tree.edit.input.placeholder.title' | translate}}">
             <mat-error>{{getErrorMessage(titleField)}}</mat-error>
         </mat-form-field>
+
+        <div class="flex">
+            <h1 class="flex-1 mat-h3">{{'function.tree.edit.label.node.root' | translate}}</h1>
+            <mat-slide-toggle class="tree-toggle" [disabled]="nodeToggleDisabled" [(ngModel)]="newNode" [ngModelOptions]="{standalone: true}">
+                <mat-icon matTooltip="{{(newNode ? 'function.tree.edit.tooltip.node.new' : 'function.tree.edit.tooltip.node.existing') | translate}}">
+                    {{newNode ? 'add' : 'device_hub'}}
+                </mat-icon>
+            </mat-slide-toggle>
+        </div>
     </form>
 </div>
 <div mat-dialog-actions class="dialog-button-row">

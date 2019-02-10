@@ -6,6 +6,12 @@ export interface TreeDto {
     accessibility: Accessibility;
 }
 
+export interface CreateTreeRequest {
+    rootNodeId: number;
+    title: string;
+    public: boolean;
+}
+
 export enum Accessibility {
     PUBLIC = 'PUBLIC',
     PRIVATE = 'PRIVATE'

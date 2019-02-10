@@ -27,7 +27,5 @@ export interface TreeCardDialogData {
 }
 
 export interface TreeDialogData {
-    title: string;
-    public: boolean;
-    rootNodeId: number;
+    trees: TreeDto[];
 }

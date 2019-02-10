@@ -47,7 +47,8 @@ export class TreeCardCreateOrEditComponent implements OnInit {
     descriptionField: FormControl;
     treeField: FormControl;
 
-    constructor(private imageService: ImageService, private validationMessageService: ValidationMessageService,
+    constructor(private imageService: ImageService,
+                private validationMessageService: ValidationMessageService,
                 private dialog: MatDialog) {
     }
 
@@ -122,8 +123,7 @@ export class TreeCardCreateOrEditComponent implements OnInit {
             const dialogRef = this.dialog.open(TreeCreateDialogComponent, {
                 width: '400px',
                 data: {
-                    id: this.data.treeCard.id,
-                    title: this.data.treeCard.title
+                    trees: this.data.trees
                 }
             });
 
