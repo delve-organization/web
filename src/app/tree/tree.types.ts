@@ -6,8 +6,7 @@ export interface TreeDto {
     accessibility: Accessibility;
 }
 
-export interface CreateTreeRequest {
-    rootNodeId: number;
+export interface CreateTreeRequestData {
     title: string;
     public: boolean;
 }

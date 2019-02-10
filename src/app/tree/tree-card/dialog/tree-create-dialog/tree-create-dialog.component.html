@@ -2,9 +2,9 @@
     <h1 mat-dialog-title class="dialog-title flex-1">{{'function.tree.edit.label.title.create' | translate}}</h1>
 
     <form #headerForm="ngForm">
-        <mat-slide-toggle class="tree-toggle" [(ngModel)]="request.public" name="accessibility">
-            <mat-icon matTooltip="{{(request.public ? 'function.tree.edit.tooltip.accessibility.public' : 'function.tree.edit.tooltip.accessibility.private') | translate}}">
-                {{request.public ? 'lock_open' : 'lock'}}
+        <mat-slide-toggle class="tree-toggle" [(ngModel)]="requestData.public" name="accessibility">
+            <mat-icon matTooltip="{{(requestData.public ? 'function.tree.edit.tooltip.accessibility.public' : 'function.tree.edit.tooltip.accessibility.private') | translate}}">
+                {{requestData.public ? 'lock_open' : 'lock'}}
             </mat-icon>
         </mat-slide-toggle>
     </form>
@@ -24,6 +24,19 @@
                     {{newNode ? 'add' : 'device_hub'}}
                 </mat-icon>
             </mat-slide-toggle>
+        </div>
+
+        <div class="flex" *ngIf="!newNode">
+            <mat-form-field class="flex-1">
+                <mat-select placeholder="{{'function.tree.edit.input.placeholder.tree' | translate}}" (selectionChange)="onTreeSelectChange($event)">
+                    <mat-option *ngFor="let tree of availableTrees" [value]="tree">
+                        {{tree.title}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button [disabled]="!rootNode" mat-mini-fab color="primary" class="node-select-button" matTooltip="{{'function.tree.edit.tooltip.selectnode' | translate}}">
+                <mat-icon>scatter_plot</mat-icon>
+            </button>
         </div>
     </form>
 </div>

@@ -1,10 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {TreeCardDialogData, TreeDialogData} from '../../tree-card.types';
+import {MAT_DIALOG_DATA, MatDialogRef, MatSelectChange} from '@angular/material';
+import {TreeDialogData} from '../../tree-card.types';
 import {ValidationMessageFn, ValidationMessageService} from '../../../../common/services/validation-message.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Accessibility, CreateTreeRequest} from '../../../tree.types';
+import {Accessibility, CreateTreeRequestData, TreeDto} from '../../../tree.types';
 import {TreeService} from '../../../tree.service';
+import {NodeDto} from '../../../tree-view/tree-node/tree-node.types';
+import {NodeService} from '../../../tree-view/tree-node/node.service';
 
 @Component({
     selector: 'delve-tree-card-delete-dialog',
@@ -13,45 +15,55 @@ import {TreeService} from '../../../tree.service';
 })
 export class TreeCreateDialogComponent implements OnInit {
 
-    request: CreateTreeRequest;
+    requestData: CreateTreeRequestData;
     newNode: boolean;
     nodeToggleDisabled: boolean;
+    availableTrees: TreeDto[];
 
     getErrorMessage: ValidationMessageFn;
     form: FormGroup;
     titleField: FormControl;
 
+    private rootNode: NodeDto;
+
     constructor(private dialogRef: MatDialogRef<TreeCreateDialogComponent>,
                 private validationMessageService: ValidationMessageService,
                 private treeService: TreeService,
-                @Inject(MAT_DIALOG_DATA) public data: TreeDialogData) {
+                private nodeService: NodeService,
+                @Inject(MAT_DIALOG_DATA) private data: TreeDialogData) {
     }
 
     ngOnInit(): void {
-        this.request = {
+        this.requestData = {
             public: true,
-            title: undefined,
-            rootNodeId: 1 // todo: dummy data
+            title: undefined
         };
         this.newNode = true;
-        this.nodeToggleDisabled = !this.data.trees.some(tree => tree.editable);
+        this.availableTrees = this.data.trees.filter(tree => tree.editable);
+        this.nodeToggleDisabled = this.availableTrees.length < 1;
 
         // Fields
         this.getErrorMessage = this.validationMessageService.errorMessage.bind(this.validationMessageService);
-        this.titleField = new FormControl(this.request.title, [Validators.required]);
+        this.titleField = new FormControl(this.requestData.title, [Validators.required]);
         this.form = new FormGroup({
             'title': this.titleField
         });
-        this.titleField.valueChanges.subscribe((value => this.request.title = value));
+        this.titleField.valueChanges.subscribe((value => this.requestData.title = value));
     }
 
-    public onSaveClick(): void {
+    onSaveClick(): void {
         this.treeService.create(
-            this.request.title,
-            this.request.rootNodeId,
-            this.request.public ? Accessibility.PUBLIC : Accessibility.PRIVATE
+            this.requestData.title,
+            this.rootNode.id,
+            this.requestData.public ? Accessibility.PUBLIC : Accessibility.PRIVATE
         ).subscribe((savedTree) => {
             this.dialogRef.close(savedTree);
+        });
+    }
+
+    onTreeSelectChange(event: MatSelectChange): void {
+        this.nodeService.getNodesFromRoot(event.value.rootNodeId).subscribe(node => {
+            this.rootNode = node;
         });
     }
 }
