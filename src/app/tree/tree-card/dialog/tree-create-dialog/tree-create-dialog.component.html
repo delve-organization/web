@@ -34,7 +34,7 @@
                     </mat-option>
                 </mat-select>
             </mat-form-field>
-            <button [disabled]="!rootNode" mat-mini-fab color="primary" class="node-select-button" matTooltip="{{'function.tree.edit.tooltip.selectnode' | translate}}">
+            <button (click)="onNodeSelectClick()" [disabled]="!rootNode" mat-mini-fab color="primary" class="node-select-button" matTooltip="{{'function.tree.edit.tooltip.selectnode' | translate}}">
                 <mat-icon>scatter_plot</mat-icon>
             </button>
         </div>

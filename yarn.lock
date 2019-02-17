@@ -276,6 +276,12 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@delve/tree-chart-api@0.0.2":
+  version "0.0.2"
+  resolved "http://rsptn.ddns.net:4441/@delve%2ftree-chart-api/-/tree-chart-api-0.0.2.tgz#8e071081d17c881a1f006389049779353f1d3d5b"
+  dependencies:
+    tslib "^1.9.0"
+
 "@ngtools/webpack@6.2.9":
   version "6.2.9"
   resolved "http://rsptn.ddns.net:4441/@ngtools%2fwebpack/-/webpack-6.2.9.tgz#4614f770da86a08fa6d750c50fd4a1033e6a7128"
@@ -294,6 +300,12 @@
 "@ngx-translate/http-loader@^4.0.0":
   version "4.0.0"
   resolved "http://rsptn.ddns.net:4441/@ngx-translate%2fhttp-loader/-/http-loader-4.0.0.tgz#8a555248ad4b7d513460fcec9da25b0447962f1d"
+  dependencies:
+    tslib "^1.9.0"
+
+"@ping/pi-iframe@0.0.1":
+  version "0.0.1"
+  resolved "http://rsptn.ddns.net:4441/@ping%2fpi-iframe/-/pi-iframe-0.0.1.tgz#210b5e274a47417496baf3ce048a30c5301b4a45"
   dependencies:
     tslib "^1.9.0"
 

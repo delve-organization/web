@@ -9,7 +9,7 @@ import {TreeCardModule} from '../tree-card/tree-card.module';
 import {TreeCardService} from '../tree-card/tree-card.service';
 import {TreeCardNamePipe} from '../tree-card/tree-card.name.pipe';
 import {DelveCommonModule} from '../../common/delve-common.module';
-import {NodeService} from '../tree-view/tree-node/node.service';
+import {NodeService} from "../tree-view/node.service";
 
 @NgModule({
     imports: [

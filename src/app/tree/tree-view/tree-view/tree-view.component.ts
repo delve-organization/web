@@ -1,44 +1,53 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {TreeService} from '../../tree.service';
-import {NodeService} from '../tree-node/node.service';
-import {NodeDto, UserNodeRelationDto} from '../tree-node/tree-node.types';
 import {TreeDto} from '../../tree.types';
+import {PiIframeComponent} from "@ping/pi-iframe";
+import {
+    APP_LOADED_KEY,
+    NODE_DATA_INPUT_KEY,
+    USER_NODE_RELATION_DATA_CHANGE_KEY,
+    USER_NODE_RELATION_DATA_INPUT_KEY,
+    UserNodeRelationData
+} from '@delve/tree-chart-api';
+import {NodeService} from "../node.service";
 
 @Component({
-  selector: 'delve-tree-view',
-  templateUrl: './tree-view.component.html',
-  styleUrls: ['./tree-view.component.scss']
+    selector: 'delve-tree-view',
+    templateUrl: './tree-view.component.html',
+    styleUrls: ['./tree-view.component.scss']
 })
 export class TreeViewComponent implements OnInit {
 
-  public tree: TreeDto;
-  public node: NodeDto;
-  public relations: UserNodeRelationDto[];
+    @ViewChild('piIframe', {read: PiIframeComponent}) piIframe: PiIframeComponent;
 
-  public treeLoaded: boolean;
-  public nodeLoaded: boolean;
-  public relationsLoaded: boolean;
+    tree: TreeDto;
+    treeLoaded: boolean;
 
-  constructor(private route: ActivatedRoute, private treeService: TreeService, private nodeService: NodeService) {
-  }
+    constructor(private route: ActivatedRoute, private treeService: TreeService, private nodeService: NodeService) {
+    }
 
-  ngOnInit() {
-    this.route.params.subscribe(params => {
-      const treeId: number = +params['id'];
-      this.treeService.getTreeById(treeId).subscribe(treeData => {
-        this.tree = treeData;
-        this.treeLoaded = true;
+    ngOnInit() {
+        this.piIframe.listen(APP_LOADED_KEY, () => {
+            this.route.params.subscribe(params => {
+                const treeId: number = +params['id'];
+                this.treeService.getTreeById(treeId).subscribe(treeData => {
+                    this.tree = treeData;
+                    this.treeLoaded = true;
 
-        this.nodeService.getNodesFromRoot(this.tree.rootNodeId).subscribe(nodeData => {
-          this.node = nodeData;
-          this.nodeLoaded = true;
+                    this.nodeService.getNodesFromRoot(this.tree.rootNodeId).subscribe(nodeData => {
+                        this.piIframe.post(NODE_DATA_INPUT_KEY, nodeData);
+                    });
+                    this.nodeService.getRelationsByUser().subscribe(relationsData => {
+                        this.piIframe.post(USER_NODE_RELATION_DATA_INPUT_KEY, relationsData);
+                    });
+                });
+            });
         });
-        this.nodeService.getRelationsByUser().subscribe(relationsData => {
-          this.relations = relationsData;
-          this.relationsLoaded = true;
+        this.piIframe.listen<UserNodeRelationData>(USER_NODE_RELATION_DATA_CHANGE_KEY, (relation: UserNodeRelationData) => {
+            this.nodeService.setRelation(relation.nodeId, relation.visited).subscribe(() => {
+                this.piIframe.post<UserNodeRelationData>(USER_NODE_RELATION_DATA_CHANGE_KEY, relation);
+            });
         });
-      });
-    });
-  }
+    }
 }

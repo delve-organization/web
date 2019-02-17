@@ -10,6 +10,10 @@ import {TreeCardEditDialogComponent} from './dialog/tree-card-edit-dialog/tree-c
 import {TreeCardCreateOrEditComponent} from './dialog/tree-card-create-or-edit/tree-card-create-or-edit.component';
 import {DelveCommonModule} from '../../common/delve-common.module';
 import {TreeCreateDialogComponent} from './dialog/tree-create-dialog/tree-create-dialog.component';
+import { NodeSelectDialogComponent } from './dialog/node-select-dialog/node-select-dialog.component';
+import {TreeViewModule} from "../tree-view/tree-view.module";
+import {PiTreeChartModule} from "@ping/pi-tree-chart";
+import {PiIframeModule} from "@ping/pi-iframe";
 
 @NgModule({
     imports: [
@@ -18,7 +22,9 @@ import {TreeCreateDialogComponent} from './dialog/tree-create-dialog/tree-create
         FormsModule,
         ColorPickerModule,
         DelveCommonModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        TreeViewModule,
+        PiIframeModule
     ],
     declarations: [
         TreeCardComponent,
@@ -26,7 +32,8 @@ import {TreeCreateDialogComponent} from './dialog/tree-create-dialog/tree-create
         TreeCardCreateDialogComponent,
         TreeCardEditDialogComponent,
         TreeCardCreateOrEditComponent,
-        TreeCreateDialogComponent
+        TreeCreateDialogComponent,
+        NodeSelectDialogComponent
     ],
     exports: [
         TreeCardComponent
@@ -35,7 +42,8 @@ import {TreeCreateDialogComponent} from './dialog/tree-create-dialog/tree-create
         TreeCardDeleteDialogComponent,
         TreeCardCreateDialogComponent,
         TreeCardEditDialogComponent,
-        TreeCreateDialogComponent
+        TreeCreateDialogComponent,
+        NodeSelectDialogComponent
     ]
 })
 export class TreeCardModule {

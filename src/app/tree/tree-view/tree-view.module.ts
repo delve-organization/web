@@ -1,15 +1,14 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {TreeComponent} from './tree/tree.component';
-import {NodeService} from './tree-node/node.service';
 import {MaterialModule} from '../../common/material/material.module';
 import {TreeViewComponent} from './tree-view/tree-view.component';
 import {TreeService} from '../tree.service';
 import {PiTreeChartModule} from '@ping/pi-tree-chart';
 import {PiLeaderLineModule} from '@ping/pi-leader-line';
-import {TreeNodeComponent} from './tree-node/tree-node.component';
+import {PiIframeModule} from '@ping/pi-iframe';
 import {TreeViewRoutingModule} from './tree-view-routing.module';
 import {DelveCommonModule} from '../../common/delve-common.module';
+import {NodeService} from "./node.service";
 
 @NgModule({
     imports: [
@@ -18,9 +17,10 @@ import {DelveCommonModule} from '../../common/delve-common.module';
         DelveCommonModule,
         MaterialModule,
         PiLeaderLineModule,
-        PiTreeChartModule
+        PiTreeChartModule,
+        PiIframeModule
     ],
-    declarations: [TreeComponent, TreeViewComponent, TreeNodeComponent],
+    declarations: [TreeViewComponent],
     providers: [NodeService, TreeService]
 })
 export class TreeViewModule {

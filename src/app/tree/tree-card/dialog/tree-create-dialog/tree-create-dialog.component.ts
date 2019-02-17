@@ -1,12 +1,12 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatSelectChange} from '@angular/material';
+import {MAT_DIALOG_DATA, MatDialog, MatDialogRef, MatSelectChange} from '@angular/material';
 import {TreeDialogData} from '../../tree-card.types';
 import {ValidationMessageFn, ValidationMessageService} from '../../../../common/services/validation-message.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Accessibility, CreateTreeRequestData, TreeDto} from '../../../tree.types';
+import {Accessibility, CreateTreeRequestData, NodeDto, TreeDto} from '../../../tree.types';
 import {TreeService} from '../../../tree.service';
-import {NodeDto} from '../../../tree-view/tree-node/tree-node.types';
-import {NodeService} from '../../../tree-view/tree-node/node.service';
+import {NodeSelectDialogComponent} from "../node-select-dialog/node-select-dialog.component";
+import {NodeService} from "../../../tree-view/node.service";
 
 @Component({
     selector: 'delve-tree-card-delete-dialog',
@@ -30,6 +30,7 @@ export class TreeCreateDialogComponent implements OnInit {
                 private validationMessageService: ValidationMessageService,
                 private treeService: TreeService,
                 private nodeService: NodeService,
+                private dialog: MatDialog,
                 @Inject(MAT_DIALOG_DATA) private data: TreeDialogData) {
     }
 
@@ -64,6 +65,27 @@ export class TreeCreateDialogComponent implements OnInit {
     onTreeSelectChange(event: MatSelectChange): void {
         this.nodeService.getNodesFromRoot(event.value.rootNodeId).subscribe(node => {
             this.rootNode = node;
+        });
+    }
+
+    onNodeSelectClick(): void {
+        const dialogRef = this.dialog.open(NodeSelectDialogComponent, {
+            width: '800px',
+            height: '800px',
+            data: {
+                rootNode: this.rootNode
+            }
+        });
+
+        dialogRef.afterClosed().subscribe(savedTree => {
+            // if (savedTree) {
+            //     this.data.trees.push(savedTree);
+            //     this.selectedTree = savedTree;
+            //     this.treeField.setValue(savedTree);
+            // } else {
+            //     this.treeField.setValue(undefined);
+            //     this.updateAccessibility();
+            // }
         });
     }
 }
