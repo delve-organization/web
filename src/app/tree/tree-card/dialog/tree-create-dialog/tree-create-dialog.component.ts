@@ -70,11 +70,12 @@ export class TreeCreateDialogComponent implements OnInit {
 
     onNodeSelectClick(): void {
         const dialogRef = this.dialog.open(NodeSelectDialogComponent, {
-            width: '800px',
-            height: '800px',
+            width: '500px',
+            height: '500px',
             data: {
                 rootNode: this.rootNode
-            }
+            },
+            panelClass: 'no-padding-panel'
         });
 
         dialogRef.afterClosed().subscribe(savedTree => {

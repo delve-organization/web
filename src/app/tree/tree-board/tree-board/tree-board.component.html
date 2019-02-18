@@ -1,26 +1,28 @@
-<div class="tree-board-header">
-    <div>
-    </div>
-    <mat-form-field class="tree-board-search-field">
-        <input matInput type="text" placeholder="{{'function.treeboard.input.placeholder.filter' | translate}}" [(ngModel)]="treeCardFilter">
-        <button mat-button *ngIf="treeCardFilter" matSuffix mat-icon-button aria-label="Clear"
-                (click)="treeCardFilter=''">
-            <mat-icon>close</mat-icon>
-        </button>
-    </mat-form-field>
-    <div>
-        <div class="right-button-group">
-            <button mat-raised-button color="primary" (click)="openCreateDialog()">
-                <mat-icon>create</mat-icon>
-                {{'function.treeboard.button.create' | translate}}
+<div class="tree-board-container">
+    <div class="tree-board-header">
+        <div>
+        </div>
+        <mat-form-field class="tree-board-search-field">
+            <input matInput type="text" placeholder="{{'function.treeboard.input.placeholder.filter' | translate}}" [(ngModel)]="treeCardFilter">
+            <button mat-button *ngIf="treeCardFilter" matSuffix mat-icon-button aria-label="Clear"
+                    (click)="treeCardFilter=''">
+                <mat-icon>close</mat-icon>
             </button>
+        </mat-form-field>
+        <div>
+            <div class="right-button-group">
+                <button mat-raised-button color="primary" (click)="openCreateDialog()">
+                    <mat-icon>create</mat-icon>
+                    {{'function.treeboard.button.create' | translate}}
+                </button>
+            </div>
         </div>
     </div>
-</div>
 
-<div *ngIf="treeCardsLoaded && treesLoaded; else loading" class="band">
-    <div *ngFor="let treeCard of treeCards | name: treeCardFilter; let index = index">
-        <delve-tree-card [treeCards]="treeCards" [treeCardIndex]="index" [trees]="trees"></delve-tree-card>
+    <div *ngIf="treeCardsLoaded && treesLoaded; else loading" class="band">
+        <div *ngFor="let treeCard of treeCards | name: treeCardFilter; let index = index">
+            <delve-tree-card [treeCards]="treeCards" [treeCardIndex]="index" [trees]="trees"></delve-tree-card>
+        </div>
     </div>
 </div>
 <ng-template #loading>

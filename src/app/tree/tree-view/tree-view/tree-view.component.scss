@@ -1,11 +1,12 @@
-.tree-view-content {
-  padding: 16px;
+.tree-view-container {
+  flex-direction: column;
   text-align: center;
   min-height: fit-content;
   height: 100%;
 }
 
 .tree-view-title {
+  padding-top: 16px;
   width: fit-content;
   margin: auto;
 }

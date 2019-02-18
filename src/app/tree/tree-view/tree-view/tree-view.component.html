@@ -1,8 +1,8 @@
-<div class="tree-view-content">
+<div class="tree-view-container flex">
     <div *ngIf="treeLoaded; else loading" class="tree-view-title">
         <h1 class="mat-h1">{{tree.title}}</h1>
     </div>
-    <pi-iframe #piIframe [src]="'/assets/delve-tree-chart/index.html'"></pi-iframe>
+    <pi-iframe class="flex-1" #piIframe [src]="'/assets/delve-tree-chart/index.html'"></pi-iframe>
 </div>
 <ng-template #loading>
     <delve-loading></delve-loading>

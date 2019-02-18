@@ -12,7 +12,6 @@ import {DelveCommonModule} from '../../common/delve-common.module';
 import {TreeCreateDialogComponent} from './dialog/tree-create-dialog/tree-create-dialog.component';
 import { NodeSelectDialogComponent } from './dialog/node-select-dialog/node-select-dialog.component';
 import {TreeViewModule} from "../tree-view/tree-view.module";
-import {PiTreeChartModule} from "@ping/pi-tree-chart";
 import {PiIframeModule} from "@ping/pi-iframe";
 
 @NgModule({

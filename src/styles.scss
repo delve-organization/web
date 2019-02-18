@@ -5,3 +5,11 @@
 @import "~font-awesome/css/font-awesome.min.css";
 @import "styles/anti-user-agent-stylesheet";
 @import "styles/custom-mat-stylesheet";
+
+.flex {
+  display: flex;
+}
+
+.flex-1 {
+  flex: 1;
+}

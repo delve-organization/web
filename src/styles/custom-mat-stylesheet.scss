@@ -16,3 +16,8 @@
 .mat-drawer-container {
   background: #939393;
 }
+
+.no-padding-panel .mat-dialog-container {
+  padding: 0;
+  overflow: hidden;
+}
