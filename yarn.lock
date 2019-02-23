@@ -276,9 +276,9 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@delve/tree-chart-api@0.0.2":
-  version "0.0.2"
-  resolved "http://rsptn.ddns.net:4441/@delve%2ftree-chart-api/-/tree-chart-api-0.0.2.tgz#8e071081d17c881a1f006389049779353f1d3d5b"
+"@delve/tree-chart-api@0.0.3":
+  version "0.0.3"
+  resolved "http://rsptn.ddns.net:4441/@delve%2ftree-chart-api/-/tree-chart-api-0.0.3.tgz#13b9c2fdaeda80b53d204d07d55b50daf0d49e64"
   dependencies:
     tslib "^1.9.0"
 

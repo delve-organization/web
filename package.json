@@ -26,7 +26,7 @@
     "@ngx-translate/http-loader": "^4.0.0",
     "@ping/pi-leader-line": "0.0.1",
     "@ping/pi-iframe": "0.0.8",
-    "@delve/tree-chart-api": "0.0.2",
+    "@delve/tree-chart-api": "0.0.3",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
     "hammerjs": "^2.0.8",

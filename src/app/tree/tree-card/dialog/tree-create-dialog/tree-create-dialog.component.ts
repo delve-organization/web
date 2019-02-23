@@ -7,6 +7,7 @@ import {Accessibility, CreateTreeRequestData, NodeDto, TreeDto} from '../../../t
 import {TreeService} from '../../../tree.service';
 import {NodeSelectDialogComponent} from "../node-select-dialog/node-select-dialog.component";
 import {NodeService} from "../../../tree-view/node.service";
+import {SelectedNodeData} from "@delve/tree-chart-api";
 
 @Component({
     selector: 'delve-tree-card-delete-dialog',
@@ -25,6 +26,7 @@ export class TreeCreateDialogComponent implements OnInit {
     titleField: FormControl;
 
     private rootNode: NodeDto;
+    private selectedNodeId: number;
 
     constructor(private dialogRef: MatDialogRef<TreeCreateDialogComponent>,
                 private validationMessageService: ValidationMessageService,
@@ -55,7 +57,7 @@ export class TreeCreateDialogComponent implements OnInit {
     onSaveClick(): void {
         this.treeService.create(
             this.requestData.title,
-            this.rootNode.id,
+            this.selectedNodeId,
             this.requestData.public ? Accessibility.PUBLIC : Accessibility.PRIVATE
         ).subscribe((savedTree) => {
             this.dialogRef.close(savedTree);
@@ -65,6 +67,7 @@ export class TreeCreateDialogComponent implements OnInit {
     onTreeSelectChange(event: MatSelectChange): void {
         this.nodeService.getNodesFromRoot(event.value.rootNodeId).subscribe(node => {
             this.rootNode = node;
+            this.selectedNodeId = node.id;
         });
     }
 
@@ -78,15 +81,10 @@ export class TreeCreateDialogComponent implements OnInit {
             panelClass: 'no-padding-panel'
         });
 
-        dialogRef.afterClosed().subscribe(savedTree => {
-            // if (savedTree) {
-            //     this.data.trees.push(savedTree);
-            //     this.selectedTree = savedTree;
-            //     this.treeField.setValue(savedTree);
-            // } else {
-            //     this.treeField.setValue(undefined);
-            //     this.updateAccessibility();
-            // }
+        dialogRef.afterClosed().subscribe((node: SelectedNodeData) => {
+            if (node) {
+                this.selectedNodeId = node.nodeId;
+            }
         });
     }
 }

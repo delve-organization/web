@@ -4,7 +4,7 @@
 /*!*********************************************************************************!*\
   !*** ./projects/delve-tree-chart-api/src/lib/delve-tree-chart-api.constants.ts ***!
   \*********************************************************************************/
-/*! exports provided: APP_LOADED_KEY, NODE_DATA_INPUT_KEY, USER_NODE_RELATION_DATA_INPUT_KEY, USER_NODE_RELATION_DATA_CHANGE_KEY */
+/*! exports provided: APP_LOADED_KEY, NODE_DATA_INPUT_KEY, USER_NODE_RELATION_DATA_INPUT_KEY, USER_NODE_RELATION_DATA_CHANGE_KEY, SELECTED_NODE_DATA_KEY, APP_MODE_KEY */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -13,10 +13,36 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "NODE_DATA_INPUT_KEY", function() { return NODE_DATA_INPUT_KEY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USER_NODE_RELATION_DATA_INPUT_KEY", function() { return USER_NODE_RELATION_DATA_INPUT_KEY; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "USER_NODE_RELATION_DATA_CHANGE_KEY", function() { return USER_NODE_RELATION_DATA_CHANGE_KEY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SELECTED_NODE_DATA_KEY", function() { return SELECTED_NODE_DATA_KEY; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "APP_MODE_KEY", function() { return APP_MODE_KEY; });
 var APP_LOADED_KEY = { key: 'APP_LOADED_KEY' };
 var NODE_DATA_INPUT_KEY = { key: 'NODE_DATA_INPUT_KEY' };
 var USER_NODE_RELATION_DATA_INPUT_KEY = { key: 'USER_NODE_RELATION_DATA_INPUT_KEY' };
 var USER_NODE_RELATION_DATA_CHANGE_KEY = { key: 'USER_NODE_RELATION_DATA_CHANGE_KEY' };
+var SELECTED_NODE_DATA_KEY = { key: 'SELECTED_NODE_DATA_KEY' };
+var APP_MODE_KEY = { key: 'APP_MODE_KEY' };
+
+
+/***/ }),
+
+/***/ "./projects/delve-tree-chart-api/src/lib/delve-tree-chart-api.types.ts":
+/*!*****************************************************************************!*\
+  !*** ./projects/delve-tree-chart-api/src/lib/delve-tree-chart-api.types.ts ***!
+  \*****************************************************************************/
+/*! exports provided: AppMode */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AppMode", function() { return AppMode; });
+var AppMode = /** @class */ (function () {
+    function AppMode() {
+    }
+    AppMode.NORMAL = 'NORMAL';
+    AppMode.SELECTOR = 'SELECTOR';
+    return AppMode;
+}());
+
 
 
 /***/ }),
@@ -25,23 +51,31 @@ var USER_NODE_RELATION_DATA_CHANGE_KEY = { key: 'USER_NODE_RELATION_DATA_CHANGE_
 /*!*********************************************************!*\
   !*** ./projects/delve-tree-chart-api/src/public_api.ts ***!
   \*********************************************************/
-/*! exports provided: APP_LOADED_KEY, NODE_DATA_INPUT_KEY, USER_NODE_RELATION_DATA_INPUT_KEY, USER_NODE_RELATION_DATA_CHANGE_KEY */
+/*! exports provided: AppMode, APP_LOADED_KEY, NODE_DATA_INPUT_KEY, USER_NODE_RELATION_DATA_INPUT_KEY, USER_NODE_RELATION_DATA_CHANGE_KEY, SELECTED_NODE_DATA_KEY, APP_MODE_KEY */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/delve-tree-chart-api.constants */ "./projects/delve-tree-chart-api/src/lib/delve-tree-chart-api.constants.ts");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "APP_LOADED_KEY", function() { return _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_0__["APP_LOADED_KEY"]; });
+/* harmony import */ var _lib_delve_tree_chart_api_types__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./lib/delve-tree-chart-api.types */ "./projects/delve-tree-chart-api/src/lib/delve-tree-chart-api.types.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "AppMode", function() { return _lib_delve_tree_chart_api_types__WEBPACK_IMPORTED_MODULE_0__["AppMode"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NODE_DATA_INPUT_KEY", function() { return _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_0__["NODE_DATA_INPUT_KEY"]; });
+/* harmony import */ var _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./lib/delve-tree-chart-api.constants */ "./projects/delve-tree-chart-api/src/lib/delve-tree-chart-api.constants.ts");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "APP_LOADED_KEY", function() { return _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_1__["APP_LOADED_KEY"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "USER_NODE_RELATION_DATA_INPUT_KEY", function() { return _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_0__["USER_NODE_RELATION_DATA_INPUT_KEY"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "NODE_DATA_INPUT_KEY", function() { return _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_1__["NODE_DATA_INPUT_KEY"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "USER_NODE_RELATION_DATA_CHANGE_KEY", function() { return _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_0__["USER_NODE_RELATION_DATA_CHANGE_KEY"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "USER_NODE_RELATION_DATA_INPUT_KEY", function() { return _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_1__["USER_NODE_RELATION_DATA_INPUT_KEY"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "USER_NODE_RELATION_DATA_CHANGE_KEY", function() { return _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_1__["USER_NODE_RELATION_DATA_CHANGE_KEY"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "SELECTED_NODE_DATA_KEY", function() { return _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_1__["SELECTED_NODE_DATA_KEY"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "APP_MODE_KEY", function() { return _lib_delve_tree_chart_api_constants__WEBPACK_IMPORTED_MODULE_1__["APP_MODE_KEY"]; });
 
 /*
  * Public API Surface of delve-tree-chart-api
  */
+
 
 
 
@@ -77,7 +111,7 @@ webpackEmptyAsyncContext.id = "./src/$$_lazy_route_resource lazy recursive";
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<pi-iframe #piIframe>\n    <div class=\"tree-container\">\n        <delve-tree *ngIf=\"node && relations\" class=\"tree-view\" [piIframe]=\"piIframe\" [nodeData]=\"node\" [relationsData]=\"relations\"></delve-tree>\n    </div>\n</pi-iframe>\n"
+module.exports = "<pi-iframe #piIframe>\n    <div class=\"tree-container\">\n        <delve-tree *ngIf=\"node && relations && appMode\" class=\"tree-view\" [piIframe]=\"piIframe\" [nodeData]=\"node\" [relationsData]=\"relations\" [appMode]=\"appMode\"></delve-tree>\n    </div>\n</pi-iframe>\n"
 
 /***/ }),
 
@@ -122,6 +156,11 @@ var AppComponent = /** @class */ (function () {
         this.piIframe.listen(projects_delve_tree_chart_api_src_public_api__WEBPACK_IMPORTED_MODULE_3__["USER_NODE_RELATION_DATA_INPUT_KEY"], function (relations) {
             _this.relations = relations;
         });
+        this.piIframe.listen(projects_delve_tree_chart_api_src_public_api__WEBPACK_IMPORTED_MODULE_3__["APP_MODE_KEY"], function (mode) {
+            _this.appMode = mode;
+        });
+        //const appTester: AppTester = new AppTester(this.piIframe);
+        //appTester.postInitialData();
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('piIframe', { read: _ping_pi_iframe__WEBPACK_IMPORTED_MODULE_2__["PiIframeComponent"] }),
@@ -348,7 +387,7 @@ var Node = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"node\" [class.visited]=\"node.visited\">\n  <div class=\"mat-body-strong\">id: {{node.id}}</div>\n  <div class=\"mat-body-strong\">{{node.title}}</div>\n  <div class=\"mat-caption\">{{node.description}}</div>\n\n  <div *ngIf=\"node.imageUrl\">\n    <img [src]=\"node.imageUrl\" (load)=\"imageLoaded()\" class=\"node-image\">\n  </div>\n\n  <div *ngIf=\"node.children && node.children.length > 0\">\n    <button mat-icon-button (click)=\"toggleChildren()\">\n      <mat-icon>{{showChildren ? 'remove' : 'add'}}</mat-icon>\n    </button>\n  </div>\n  <div *ngIf=\"!node.children || node.children.length === 0\">\n    <button mat-icon-button (click)=\"toggleVisitedStatus()\">\n      <mat-icon>{{node.visited ? 'visibility_off' : 'visibility'}}</mat-icon>\n    </button>\n  </div>\n</div>\n"
+module.exports = "<div class=\"node\" [class.visited]=\"node.visited\">\n  <div class=\"mat-body-strong\">id: {{node.id}}</div>\n  <div class=\"mat-body-strong\">{{node.title}}</div>\n  <div class=\"mat-caption\">{{node.description}}</div>\n\n  <div *ngIf=\"node.imageUrl\">\n    <img [src]=\"node.imageUrl\" (load)=\"imageLoaded()\" class=\"node-image\">\n  </div>\n\n  <div *ngIf=\"node.children && node.children.length > 0\" class=\"bottom-button\">\n    <button mat-icon-button (click)=\"toggleChildren()\">\n      <mat-icon>{{showChildren ? 'remove' : 'add'}}</mat-icon>\n    </button>\n  </div>\n  <div [ngSwitch]=\"appMode\" class=\"bottom-button\">\n    <div *ngSwitchCase=\"'NORMAL'\">\n      <button *ngIf=\"!node.children || node.children.length === 0\" mat-icon-button (click)=\"toggleVisitedStatus()\">\n        <mat-icon>{{node.visited ? 'visibility_off' : 'visibility'}}</mat-icon>\n      </button>\n    </div>\n    <div *ngSwitchCase=\"'SELECTOR'\">\n      <button mat-icon-button (click)=\"selectNode()\">\n        <mat-icon>touch_app</mat-icon>\n      </button>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
 
@@ -359,7 +398,7 @@ module.exports = "<div class=\"node\" [class.visited]=\"node.visited\">\n  <div 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".node {\n  border: 4px solid green;\n  border-radius: 15px;\n  background: repeating-linear-gradient(45deg, rgba(0, 128, 0, 0.1), rgba(0, 128, 0, 0.1) 10px, rgba(0, 128, 0, 0.3) 10px, rgba(0, 128, 0, 0.3) 20px);\n  margin: 0 3px; }\n  .node.visited {\n    border: 4px dashed gray;\n    background: repeating-linear-gradient(45deg, rgba(128, 128, 128, 0.1), rgba(128, 128, 128, 0.1) 10px, rgba(128, 128, 128, 0.3) 10px, rgba(128, 128, 128, 0.3) 20px); }\n  .node-image {\n  max-width: 100%; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdHJlZS1ub2RlL1M6XFxkZXZcXGFuZ3VsYXJcXGRlbHZlLXRyZWUtY2hhcnQvc3JjXFxhcHBcXHRyZWUtbm9kZVxcdHJlZS1ub2RlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVVBO0VBQ0UsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixtSkFOQztFQU9ELGFBQWEsRUFBQTtFQUpmO0lBT0ksdUJBQXVCO0lBQ3ZCLG1LQVhELEVBQUE7RUFlSDtFQUNFLGVBQWUsRUFBQSIsImZpbGUiOiJzcmMvYXBwL3RyZWUtbm9kZS90cmVlLW5vZGUuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJAZnVuY3Rpb24gc2V0LWJhY2tncm91bmQoJGNvbG9yKSB7XHJcbiAgQHJldHVybiByZXBlYXRpbmctbGluZWFyLWdyYWRpZW50KFxyXG4gICAgICA0NWRlZyxcclxuICAgICAgcmdiYSgkY29sb3IsIDAuMSksXHJcbiAgICAgIHJnYmEoJGNvbG9yLCAwLjEpIDEwcHgsXHJcbiAgICAgIHJnYmEoJGNvbG9yLCAwLjMpIDEwcHgsXHJcbiAgICAgIHJnYmEoJGNvbG9yLCAwLjMpIDIwcHhcclxuICApO1xyXG59XHJcblxyXG4ubm9kZSB7XHJcbiAgYm9yZGVyOiA0cHggc29saWQgZ3JlZW47XHJcbiAgYm9yZGVyLXJhZGl1czogMTVweDtcclxuICBiYWNrZ3JvdW5kOiBzZXQtYmFja2dyb3VuZChncmVlbik7XHJcbiAgbWFyZ2luOiAwIDNweDtcclxuXHJcbiAgJi52aXNpdGVkIHtcclxuICAgIGJvcmRlcjogNHB4IGRhc2hlZCBncmF5O1xyXG4gICAgYmFja2dyb3VuZDogc2V0LWJhY2tncm91bmQoZ3JheSk7XHJcbiAgfVxyXG59XHJcblxyXG4ubm9kZS1pbWFnZSB7XHJcbiAgbWF4LXdpZHRoOiAxMDAlO1xyXG59XHJcbiJdfQ== */"
+module.exports = ".node {\n  border: 4px solid green;\n  border-radius: 15px;\n  background: repeating-linear-gradient(45deg, rgba(0, 128, 0, 0.1), rgba(0, 128, 0, 0.1) 10px, rgba(0, 128, 0, 0.3) 10px, rgba(0, 128, 0, 0.3) 20px);\n  margin: 0 3px; }\n  .node.visited {\n    border: 4px dashed gray;\n    background: repeating-linear-gradient(45deg, rgba(128, 128, 128, 0.1), rgba(128, 128, 128, 0.1) 10px, rgba(128, 128, 128, 0.3) 10px, rgba(128, 128, 128, 0.3) 20px); }\n  .node-image {\n  max-width: 100%; }\n  .bottom-button {\n  display: inline-block; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvdHJlZS1ub2RlL1M6XFxkZXZcXGFuZ3VsYXJcXGRlbHZlLXRyZWUtY2hhcnQvc3JjXFxhcHBcXHRyZWUtbm9kZVxcdHJlZS1ub2RlLmNvbXBvbmVudC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQVVBO0VBQ0UsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixtSkFOQztFQU9ELGFBQWEsRUFBQTtFQUpmO0lBT0ksdUJBQXVCO0lBQ3ZCLG1LQVhELEVBQUE7RUFlSDtFQUNFLGVBQWUsRUFBQTtFQUdqQjtFQUNFLHFCQUFxQixFQUFBIiwiZmlsZSI6InNyYy9hcHAvdHJlZS1ub2RlL3RyZWUtbm9kZS5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIkBmdW5jdGlvbiBzZXQtYmFja2dyb3VuZCgkY29sb3IpIHtcclxuICBAcmV0dXJuIHJlcGVhdGluZy1saW5lYXItZ3JhZGllbnQoXHJcbiAgICAgIDQ1ZGVnLFxyXG4gICAgICByZ2JhKCRjb2xvciwgMC4xKSxcclxuICAgICAgcmdiYSgkY29sb3IsIDAuMSkgMTBweCxcclxuICAgICAgcmdiYSgkY29sb3IsIDAuMykgMTBweCxcclxuICAgICAgcmdiYSgkY29sb3IsIDAuMykgMjBweFxyXG4gICk7XHJcbn1cclxuXHJcbi5ub2RlIHtcclxuICBib3JkZXI6IDRweCBzb2xpZCBncmVlbjtcclxuICBib3JkZXItcmFkaXVzOiAxNXB4O1xyXG4gIGJhY2tncm91bmQ6IHNldC1iYWNrZ3JvdW5kKGdyZWVuKTtcclxuICBtYXJnaW46IDAgM3B4O1xyXG5cclxuICAmLnZpc2l0ZWQge1xyXG4gICAgYm9yZGVyOiA0cHggZGFzaGVkIGdyYXk7XHJcbiAgICBiYWNrZ3JvdW5kOiBzZXQtYmFja2dyb3VuZChncmF5KTtcclxuICB9XHJcbn1cclxuXHJcbi5ub2RlLWltYWdlIHtcclxuICBtYXgtd2lkdGg6IDEwMCU7XHJcbn1cclxuXHJcbi5ib3R0b20tYnV0dG9uIHtcclxuICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -411,6 +450,12 @@ var TreeNodeComponent = /** @class */ (function () {
             visited: !this.node.visited
         });
     };
+    TreeNodeComponent.prototype.selectNode = function () {
+        this.piIframe.post(projects_delve_tree_chart_api_src_public_api__WEBPACK_IMPORTED_MODULE_4__["SELECTED_NODE_DATA_KEY"], {
+            nodeId: this.node.id,
+            title: this.node.title
+        });
+    };
     TreeNodeComponent.prototype.toggleChildren = function () {
         this.showChildren = !this.showChildren;
         if (this.showChildren === true) {
@@ -435,6 +480,10 @@ var TreeNodeComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ping_pi_tree_chart__WEBPACK_IMPORTED_MODULE_3__["PiTreeChartNodeComponent"])
     ], TreeNodeComponent.prototype, "component", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", projects_delve_tree_chart_api_src_public_api__WEBPACK_IMPORTED_MODULE_4__["AppMode"])
+    ], TreeNodeComponent.prototype, "appMode", void 0);
     TreeNodeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
             selector: 'delve-tree-node',
@@ -457,7 +506,7 @@ var TreeNodeComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<pi-tree-chart #tree\n               [datasource]=\"datasource\"\n               [nodeTemplateOutlet]=\"nodeTemplate\"\n               [lineOptions]=\"lineOptions\"\n               [verticalSpace]=\"75\"\n               [levelLimit]=\"1\"\n>\n  <ng-template #nodeTemplate let-context=\"context\" let-component=\"node\">\n      <delve-tree-node [piIframe]=\"piIframe\" [node]=\"context\" [component]=\"component\"></delve-tree-node>\n  </ng-template>\n</pi-tree-chart>\n"
+module.exports = "<pi-tree-chart #tree\n               [datasource]=\"datasource\"\n               [nodeTemplateOutlet]=\"nodeTemplate\"\n               [lineOptions]=\"lineOptions\"\n               [verticalSpace]=\"75\"\n               [levelLimit]=\"1\"\n>\n  <ng-template #nodeTemplate let-context=\"context\" let-component=\"node\">\n      <delve-tree-node [piIframe]=\"piIframe\" [node]=\"context\" [component]=\"component\" [appMode]=\"appMode\"></delve-tree-node>\n  </ng-template>\n</pi-tree-chart>\n"
 
 /***/ }),
 
@@ -487,7 +536,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../node */ "./src/app/node.ts");
 /* harmony import */ var _ping_pi_leader_line__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ping/pi-leader-line */ "./node_modules/@ping/pi-leader-line/fesm5/ping-pi-leader-line.js");
 /* harmony import */ var _ping_pi_tree_chart__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ping/pi-tree-chart */ "./node_modules/@ping/pi-tree-chart/fesm5/ping-pi-tree-chart.js");
-/* harmony import */ var _ping_pi_iframe__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ping/pi-iframe */ "./node_modules/@ping/pi-iframe/fesm5/ping-pi-iframe.js");
+/* harmony import */ var projects_delve_tree_chart_api_src_public_api__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! projects/delve-tree-chart-api/src/public_api */ "./projects/delve-tree-chart-api/src/public_api.ts");
+/* harmony import */ var _ping_pi_iframe__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @ping/pi-iframe */ "./node_modules/@ping/pi-iframe/fesm5/ping-pi-iframe.js");
+
 
 
 
@@ -536,7 +587,7 @@ var TreeComponent = /** @class */ (function () {
     };
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ping_pi_iframe__WEBPACK_IMPORTED_MODULE_5__["PiIframeComponent"])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ping_pi_iframe__WEBPACK_IMPORTED_MODULE_6__["PiIframeComponent"])
     ], TreeComponent.prototype, "piIframe", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
@@ -546,6 +597,10 @@ var TreeComponent = /** @class */ (function () {
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", Array)
     ], TreeComponent.prototype, "relationsData", void 0);
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", projects_delve_tree_chart_api_src_public_api__WEBPACK_IMPORTED_MODULE_5__["AppMode"])
+    ], TreeComponent.prototype, "appMode", void 0);
     tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])('tree', { read: _ping_pi_tree_chart__WEBPACK_IMPORTED_MODULE_4__["PiTreeChartComponent"] }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _ping_pi_tree_chart__WEBPACK_IMPORTED_MODULE_4__["PiTreeChartComponent"])
